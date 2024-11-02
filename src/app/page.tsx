@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Heart, Brain, Smile, Clock } from 'lucide-react';
+import { ChevronRight, Heart, Brain, Smile, Clock, icons } from 'lucide-react';
 
 export default function LandingPage() {
   return (
@@ -81,31 +81,32 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Fitur Relaksasi */}
+      {/* Fitur Game Relaksasi */}
       <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-purple-900 mb-12">
-            Fitur Relaksasi
+            Fitur Game Relaksasi
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Heart className="h-8 w-8 text-purple-700" />}
-              title="Meditasi"
-              description="Dengarkan panduan meditasi yang membantu menenangkan pikiran"
-            />
-            <FeatureCard 
-              icon={<Heart className="h-8 w-8 text-purple-700" />}
-              title="Musik Terapi"
-              description="Dengarkan musik terapi yang membantu meredakan stres dan kecemasan"
-            />
-            <FeatureCard 
-              icon={<Heart className="h-8 w-8 text-purple-700" />}
+            <GameCard 
               title="Game Santai"
-              description="Mainkan game santai yang dirancang khusus untuk meredakan mental health"
+              description="Mainkan game santai yang dirancang khusus untuk meredakan stres dan kecemasan"
+              icons={<icons.Gamepad className="h-8 w-8 text-purple-700" />}
+            />
+            <GameCard 
+              title="Game Meditasi"
+              description="Nikmati meditasi singkat dan efektif untuk menenangkan pikiran dan tubuh"
+              icons={<icons.Sun className="h-8 w-8 text-purple-700" />}
+            />
+            <GameCard 
+              title="Game Kognitif"
+              description="Latih otak dan kognisi Anda dengan berbagai permainan kognitif menarik"
+              icons={<icons.Activity className="h-8 w-8 text-purple-700" />}
             />
           </div>
         </div>
       </div>
+      
 
       {/* Footer */}
       <footer className="bg-purple-900 text-white py-8">
@@ -141,6 +142,21 @@ const Step = ({ number, title, description }: {
   <div className="flex flex-col items-center text-center max-w-xs">
     <div className="w-12 h-12 rounded-full bg-purple-700 text-white flex items-center justify-center text-xl font-bold mb-4">
       {number}
+    </div>
+    <h3 className="text-xl font-semibold text-purple-900 mb-2">{title}</h3>
+    <p className="text-gray-600">{description}</p>
+  </div>
+);
+
+// Component untuk Fitur GameCard
+const GameCard = ({ title, description, icons }: {
+  title: string;
+  description: string;
+  icons: React.ReactNode;
+}) => (
+  <div className="p-6 rounded-xl bg-purple-50 hover:bg-purple-100 transition-colors">
+    <div className="mb-4">
+      {icons}
     </div>
     <h3 className="text-xl font-semibold text-purple-900 mb-2">{title}</h3>
     <p className="text-gray-600">{description}</p>
