@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Heart, Brain, Smile, Clock, icons } from 'lucide-react';
+import { ChevronRight, Brain, Smile, Clock, icons } from 'lucide-react'
 
 export default function LandingPage() {
   return (
@@ -9,13 +9,6 @@ export default function LandingPage() {
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-purple-100 to-white">
         <div className="container mx-auto px-4 py-16">
-          <nav className="flex justify-between items-center mb-16">
-            <div className="flex items-center space-x-2">
-              <Heart className="h-6 w-6 text-purple-700" />
-              <span className="text-2xl font-bold text-purple-700">CalmQuest</span>
-            </div>
-          </nav>
-
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-6xl font-bold text-purple-900 mb-6">
