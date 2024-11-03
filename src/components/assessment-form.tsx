@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
@@ -10,11 +10,20 @@ import type { AssessmentFormData } from '@/types/assessment';
 
 export function AssessmentForm() {
   const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
   const [currentStep, setCurrentStep] = useState<'PSS' | 'BDI'>('PSS');
   const [pssAnswers, setPssAnswers] = useState<Record<number, number>>({});
   const [bdiAnswers, setBdiAnswers] = useState<Record<number, number>>({});
   
   const { handleSubmit } = useForm<AssessmentFormData>();
+
+  // Fungsi untuk scroll ke atas dengan animasi smooth
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const handlePSSChange = (questionId: number, value: string) => {
     setPssAnswers(prev => ({
@@ -41,6 +50,8 @@ export function AssessmentForm() {
         return;
       }
       setCurrentStep('BDI');
+      // Scroll ke atas setelah pindah ke BDI
+      setTimeout(scrollToTop, 100); // Delay sedikit untuk memastikan render selesai
       return;
     }
 
@@ -70,12 +81,28 @@ export function AssessmentForm() {
     router.push('/face-detection');
   };
 
+  // Handler untuk tombol kembali
+  const handleBack = () => {
+    setCurrentStep('PSS');
+    setTimeout(scrollToTop, 100);
+  };
+
+  const getRadioId = (questionId: number, optionIndex: number) => {
+    return `${currentStep}-${questionId}-${optionIndex}`;
+  };
+
+  const getCurrentAnswers = () => {
+    return currentStep === 'PSS' ? pssAnswers : bdiAnswers;
+  };
+
+  const getCurrentHandler = () => {
+    return currentStep === 'PSS' ? handlePSSChange : handleBDIChange;
+  };
+
   const questions = currentStep === 'PSS' ? PSS_QUESTIONS : BDI_QUESTIONS;
-  const currentAnswers = currentStep === 'PSS' ? pssAnswers : bdiAnswers;
-  const handleChange = currentStep === 'PSS' ? handlePSSChange : handleBDIChange;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold text-purple-900 mb-2">
           {currentStep === 'PSS' ? 'Perceived Stress Scale (PSS)' : 'Beck Depression Inventory (BDI)'}
@@ -89,26 +116,30 @@ export function AssessmentForm() {
 
       <div className="space-y-6">
         {questions.map((q) => (
-          <Card key={q.id} className="border-purple-100">
+          <Card key={`${currentStep}-${q.id}`} className="border-purple-100">
             <CardContent className="pt-6">
               <div className="space-y-4">
                 <p className="text-lg font-medium">{q.question}</p>
                 <RadioGroup
-                  value={currentAnswers[q.id]?.toString()}
-                  onValueChange={(value) => handleChange(q.id, value)}
+                  name={`${currentStep}-question-${q.id}`}
+                  value={getCurrentAnswers()[q.id]?.toString()}
+                  onValueChange={(value) => getCurrentHandler()(q.id, value)}
                   className="space-y-2"
                 >
-                  {q.options.map((option, index) => (
-                    <div key={index} className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value={option.value.toString()}
-                        id={`${q.id}-${index}`}
-                      />
-                      <Label htmlFor={`${q.id}-${index}`} className="text-gray-700">
-                        {option.label}
-                      </Label>
-                    </div>
-                  ))}
+                  {q.options.map((option, index) => {
+                    const radioId = getRadioId(q.id, index);
+                    return (
+                      <div key={radioId} className="flex items-center space-x-2">
+                        <RadioGroupItem
+                          value={option.value.toString()}
+                          id={radioId}
+                        />
+                        <Label htmlFor={radioId} className="text-gray-700">
+                          {option.label}
+                        </Label>
+                      </div>
+                    );
+                  })}
                 </RadioGroup>
               </div>
             </CardContent>
@@ -116,12 +147,12 @@ export function AssessmentForm() {
         ))}
       </div>
 
-      <div className="flex justify-end gap-4">
+      <div className="flex justify-end gap-4 pb-8">
         {currentStep === 'BDI' && (
           <Button 
             type="button"
             variant="outline"
-            onClick={() => setCurrentStep('PSS')}
+            onClick={handleBack}
           >
             Kembali
           </Button>

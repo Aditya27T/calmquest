@@ -74,15 +74,36 @@
       "timestamp": "2024-11-03T10:15:22.979Z",
       "sessionId": "1730628831132",
       "effectiveness": 5
+    },
+    {
+      "userMessage": "saya malas melakukan apa apa",
+      "botResponse": "Maaf, saya sedang mengalami kesulitan teknis. Bagaimana jika Anda mencoba menjelaskan lebih lanjut tentang perasaan Anda?",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:18:30.566Z",
+      "sessionId": "1730628957916"
+    },
+    {
+      "userMessage": "hslo aku aman",
+      "botResponse": "Oh, syukurlah! Aku senang kamu merasa aman. Ingat, kamu selalu bisa bicara denganku jika ada hal yang membuatmu khawatir.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:19:16.382Z",
+      "sessionId": "1730629144487"
+    },
+    {
+      "userMessage": "hslo aku aman",
+      "botResponse": "Oh, syukurlah! Aku senang kamu merasa aman. Ingat, kamu selalu bisa bicara denganku jika ada hal yang membuatmu khawatir.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:19:16.382Z",
+      "sessionId": "1730629144487"
     }
   ],
   "metadata": {
-    "lastUpdated": "2024-11-03T10:15:55.888Z",
-    "totalConversations": 11,
+    "lastUpdated": "2024-11-03T10:19:43.360Z",
+    "totalConversations": 14,
     "performanceMetrics": {
       "averageEffectiveness": 5,
       "stressLevelDistribution": {
-        "low": 6,
+        "low": 9,
         "medium": 4,
         "high": 1
       }
