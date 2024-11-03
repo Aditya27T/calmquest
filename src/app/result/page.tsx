@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ChevronLeft, Loader2 } from 'lucide-react';
 import { ResultCard } from '@/components/result-card';
 import { analyzeResults } from '@/lib/gemini';
 import { Button } from '@/components/ui/button';
+import { PDFGenerator } from '@/components/pdf-generator';
+import { Toaster } from "@/components/ui/toaster";
 
 interface EmotionDetails {
   neutral: number;
@@ -44,6 +46,7 @@ interface AnalysisResult {
 
 export default function ResultPage() {
   const router = useRouter();
+  const contentRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
@@ -104,14 +107,20 @@ export default function ResultPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white py-8">
       <div className="container mx-auto px-4">
-        <Link 
-          href="/" 
-          className="inline-flex items-center text-purple-700 hover:text-purple-800 mb-8"
-        >
-          <ChevronLeft className="h-4 w-4 mr-1" />
-          Kembali ke Beranda
-        </Link>
+      <div className="flex justify-between items-center mb-8">
+          <Link 
+            href="/" 
+            className="inline-flex items-center text-purple-700 hover:text-purple-800"
+          >
+            <ChevronLeft className="h-4 w-4 mr-1" />
+            Kembali ke Beranda
+          </Link>
+          {!isLoading && !error && assessmentData && analysis && (
+            <PDFGenerator contentRef={contentRef} />
+          )}
+        </div>
 
+        <div ref={contentRef}>
         <div className="text-center mb-12">
           <h1 className="text-3xl font-bold text-purple-900 mb-4">
             Hasil Analisis
@@ -188,6 +197,7 @@ export default function ResultPage() {
               </div>
             </div>
           </ResultCard>
+        </div>
 
           <div className="flex justify-center gap-4 pt-6">
             <Button 
@@ -210,6 +220,7 @@ export default function ResultPage() {
           Jika Anda mengalami masalah kesehatan mental yang serius, segera hubungi profesional kesehatan mental.
         </p>
       </div>
+      <Toaster />
     </div>
   );
 }
