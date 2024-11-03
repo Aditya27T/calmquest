@@ -27,7 +27,7 @@ export default function GamePage() {
             </TabsTrigger>
             <TabsTrigger value="cognitive" className="flex items-center gap-2">
               <Brain className="h-4 w-4" />
-              Kognitif
+              Kognitifs
             </TabsTrigger>
             <TabsTrigger value="casual" className="flex items-center gap-2">
               <Gamepad className="h-4 w-4" />
