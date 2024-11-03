@@ -1,0 +1,91 @@
+{
+  "conversations": [
+    {
+      "userMessage": "halo",
+      "botResponse": "Halo, saya senang Anda menghubungi saya. Saya di sini untuk menyediakan dukungan dan membantu Anda mengatasi tantangan kesehatan mental apa pun yang mungkin Anda hadapi.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:05:43.270Z"
+    },
+    {
+      "userMessage": "saya sedang susah karena saya mengalami depresi semua orang menjauhi saya",
+      "botResponse": "Sayang sekali kamu merasa depresi dan dijauhi. Kamu kuat dan mampu melewatinya. Jika butuh bantuan tambahan, jangan ragu untuk menghubungi profesional kesehatan mental.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-03T10:06:12.992Z"
+    },
+    {
+      "userMessage": "apa yang harus saya lakukan",
+      "botResponse": "Tenang ya, kamu pasti bisa melewati ini. Cobalah tarik napas dalam-dalam dan fokus pada hal positif.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-03T10:06:33.340Z"
+    },
+    {
+      "userMessage": "hal apa yang bisa meredakan ini semua",
+      "botResponse": "Aku memahami kesulitan yang kamu rasakan saat ini. Stres adalah hal yang normal, namun bisa melelahkan jika berkelanjutan. Coba cari cara yang bisa menenangkan, seperti meditasi atau yoga.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-03T10:06:51.487Z"
+    },
+    {
+      "userMessage": "saya senang",
+      "botResponse": "Aku ikut senang mendengarnya! Tetap jaga pikiran dan perasaan positifmu, karena itu penting untuk kesehatan mental yang baik.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:13:43.730Z",
+      "sessionId": "1730628810972"
+    },
+    {
+      "userMessage": "saya senang",
+      "botResponse": "Aku ikut senang mendengarnya! Tetap jaga pikiran dan perasaan positifmu, karena itu penting untuk kesehatan mental yang baik.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:13:43.729Z",
+      "sessionId": "1730628810972"
+    },
+    {
+      "userMessage": "saya merasa buruk, karena saya tidak bisa menyelesaikan tugas tepat waktu",
+      "botResponse": "Saya memahami bahwa kamu merasa kecewa karena tidak bisa menyelesaikan tugas tepat waktu. Kamu sudah melakukan upaya yang baik, dan saya yakin kamu akan bisa menyelesaikannya. Coba atur tugas menjadi bagian-bagian yang lebih kecil dan fokus pada satu bagian dalam satu waktu.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-03T10:14:44.466Z",
+      "sessionId": "1730628831132"
+    },
+    {
+      "userMessage": "tetapi aku malas",
+      "botResponse": "Aku mengerti kamu mungkin merasa malas, tapi itu wajar. Jangan terlalu keras pada dirimu sendiri. Cobalah untuk membuat langkah kecil dan bertahap, satu per satu.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:15:22.980Z",
+      "sessionId": "1730628831132"
+    },
+    {
+      "userMessage": "tetapi aku malas",
+      "botResponse": "Aku mengerti kamu mungkin merasa malas, tapi itu wajar. Jangan terlalu keras pada dirimu sendiri. Cobalah untuk membuat langkah kecil dan bertahap, satu per satu.",
+      "stressLevel": "low",
+      "effectiveness": 5,
+      "timestamp": "2024-11-03T10:15:22.979Z",
+      "sessionId": "1730628831132"
+    },
+    {
+      "userMessage": "saya merasa buruk, karena saya tidak bisa menyelesaikan tugas tepat waktu",
+      "botResponse": "Saya memahami bahwa kamu merasa kecewa karena tidak bisa menyelesaikan tugas tepat waktu. Kamu sudah melakukan upaya yang baik, dan saya yakin kamu akan bisa menyelesaikannya. Coba atur tugas menjadi bagian-bagian yang lebih kecil dan fokus pada satu bagian dalam satu waktu.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-03T10:14:44.466Z",
+      "sessionId": "1730628831132"
+    },
+    {
+      "userMessage": "tetapi aku malas",
+      "botResponse": "Aku mengerti kamu mungkin merasa malas, tapi itu wajar. Jangan terlalu keras pada dirimu sendiri. Cobalah untuk membuat langkah kecil dan bertahap, satu per satu.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T10:15:22.979Z",
+      "sessionId": "1730628831132",
+      "effectiveness": 5
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2024-11-03T10:15:55.888Z",
+    "totalConversations": 11,
+    "performanceMetrics": {
+      "averageEffectiveness": 5,
+      "stressLevelDistribution": {
+        "low": 6,
+        "medium": 4,
+        "high": 1
+      }
+    }
+  }
+}

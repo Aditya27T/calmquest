@@ -48,7 +48,7 @@ const Navbar = () => {
                 onClick={handleEmergencyClick} 
                 className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full"
               >
-                Hubungi Kami
+                Kontak Penting
               </Button>
             </div>
 
@@ -99,7 +99,7 @@ const Navbar = () => {
                   }} 
                   className="w-full bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full"
                 >
-                  Hubungi Kami
+                  Kontak Penting
                 </Button>
               </div>
             </div>
