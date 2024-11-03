@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar"; // Make sure this path matches your project structure
+import Navbar from "@/components/Navbar";
+import ChatBot from "@/components/chatbot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en" className="light">
       <body className={inter.className}>
         <Navbar />
+        <ChatBot />
         <main>
           {children}
         </main>
