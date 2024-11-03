@@ -1,7 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Brain, Smile, Clock, icons } from 'lucide-react'
+import { ChevronRight, Brain, Smile, Clock, icons } from 'lucide-react';
+import Image from 'next/image';
+import hero from '../../public/hero-image.svg';
+
 
 export default function LandingPage() {
   return (
@@ -27,7 +30,12 @@ export default function LandingPage() {
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full max-w-lg h-96 bg-purple-200 rounded-2xl shadow-lg flex items-center justify-center">
-                <span className="text-purple-700">Illustration Placeholder</span>
+                <Image 
+                  src={hero}
+                  alt="Hero Image"
+                  layout="intrinsic"
+                  width={1000}
+                />
               </div>
             </div>
           </div>

@@ -1,8 +1,9 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import cachedResponses from '../../public/cache/responses.json';
 
 const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || '');
 
-type AssessmentResult = {
+interface AssessmentResult {
   pss: {
     score: number;
     level: string;
@@ -25,10 +26,41 @@ type AssessmentResult = {
     };
     dominant: string;
   };
-};
+}
+
+function generateCacheKey(results: AssessmentResult): string {
+  // Helper function to categorize scores
+  const categorizeStress = (score: number) => {
+    if (score <= 13) return 'low';
+    if (score <= 26) return 'moderate';
+    return 'high';
+  };
+
+  const categorizeDepression = (score: number) => {
+    if (score <= 10) return 'low';
+    if (score <= 16) return 'mild';
+    if (score <= 20) return 'moderate';
+    if (score <= 30) return 'severe';
+    return 'extreme';
+  };
+
+  const stressLevel = categorizeStress(results.pss.score);
+  const depressionLevel = categorizeDepression(results.bdi.score);
+  const emotion = results.emotionAnalysis.dominant.toLowerCase();
+
+  return `${stressLevel}-stress-${depressionLevel}-depression-${emotion}`;
+}
 
 export async function analyzeResults(results: AssessmentResult) {
   try {
+    // Check if we have a cached response
+    const cacheKey = generateCacheKey(results);
+    if (cachedResponses.responses[cacheKey]) {
+      console.log('Using cached response for:', cacheKey);
+      return cachedResponses.responses[cacheKey];
+    }
+
+    // If no cache, use Gemini API
     const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
     const prompt = `Analisis kondisi kesehatan mental seseorang berdasarkan data berikut sebagai seorang psikolog profesional. Berikan analisis yang mendalam namun tetap empatik dan mudah dipahami.
@@ -53,7 +85,7 @@ Data Assessment:
   • Jijik: ${(results.emotionAnalysis.details.disgusted * 100).toFixed(1)}%
   • Terkejut: ${(results.emotionAnalysis.details.surprised * 100).toFixed(1)}%
 
-Berikan analisis dengan format berikut, jangan sertakan label bagian (seperti "RINGKASAN KONDISI:"" dll) dalam respon, hasilkan dalam bentuk paragraf:
+Berikan analisis dengan format berikut, jangan sertakan label bagian dalam respon:
 
 1. Ringkasan singkat dan jelas tentang kondisi mental saat ini berdasarkan ketiga hasil assessment. Jelaskan dengan 2-3 kalimat yang mudah dipahami.
 
@@ -77,11 +109,10 @@ Panduan penting:
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    console.log('Gemini response:', response);
     const text = response.text();
     
     const parts = text.split('\n\n');
-
+    
     return {
       summary: parts[0]?.trim() || '',
       correlation: parts[1]?.trim() || '',

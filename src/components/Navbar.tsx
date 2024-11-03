@@ -2,28 +2,34 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Button } from "@/components/ui/button";
-import { 
-  Heart, 
-  Menu,
-  X,
-} from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
+import logo from '@/../public/logo-calmquest.svg';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleEmergencyClick = () => {
+    router.push('/emergency');
   };
 
   return (
     <nav className="bg-gradient-to-b from-white-100 to-purple shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo and Brand */}
           <Link href="/" className="flex items-center space-x-2">
-            <Heart className="h-6 w-6 text-purple-700" />
-            <span className="text-2xl font-bold text-purple-700">CalmQuest</span>
+            <Image 
+                src={logo}
+                alt="CalmQuest Logo"
+                width={150}
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -37,11 +43,12 @@ const Navbar = () => {
             <Link href="/about-us" className="text-gray-600 hover:text-purple-700 transition-colors">
               Tentang Kami
             </Link>
-            <Link href="/assessment">
-              <Button className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full">
-                Hubungi Kami
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleEmergencyClick} 
+              className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full"
+            >
+              Hubungi Kami
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -78,20 +85,21 @@ const Navbar = () => {
                 Game
               </Link>
               <Link 
-                href="/about"
+                href="/about-us"
                 className="text-gray-600 hover:text-purple-700 transition-colors px-2 py-1"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Tentang Kami
               </Link>
-              <Link 
-                href="/assessment"
-                onClick={() => setIsMenuOpen(false)}
+              <Button 
+                onClick={() => {
+                  handleEmergencyClick();
+                  setIsMenuOpen(false);
+                }} 
+                className="w-full bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full"
               >
-                <Button className="w-full bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full">
-                  Mulai Assessment
-                </Button>
-              </Link>
+                Hubungi Kami
+              </Button>
             </div>
           </div>
         )}
