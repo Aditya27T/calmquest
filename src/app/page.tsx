@@ -1,7 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Heart, Brain, Smile, Clock } from 'lucide-react';
+import { ChevronRight, Brain, Smile, Clock, icons } from 'lucide-react';
+import Image from 'next/image';
+import hero from '../../public/hero-image.svg';
+
 
 export default function LandingPage() {
   return (
@@ -9,13 +12,6 @@ export default function LandingPage() {
       {/* Hero Section */}
       <div className="bg-gradient-to-b from-purple-100 to-white">
         <div className="container mx-auto px-4 py-16">
-          <nav className="flex justify-between items-center mb-16">
-            <div className="flex items-center space-x-2">
-              <Heart className="h-6 w-6 text-purple-700" />
-              <span className="text-2xl font-bold text-purple-700">CalmQuest</span>
-            </div>
-          </nav>
-
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-6xl font-bold text-purple-900 mb-6">
@@ -34,7 +30,12 @@ export default function LandingPage() {
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="w-full max-w-lg h-96 bg-purple-200 rounded-2xl shadow-lg flex items-center justify-center">
-                <span className="text-purple-700">Illustration Placeholder</span>
+                <Image 
+                  src={hero}
+                  alt="Hero Image"
+                  layout="intrinsic"
+                  width={1000}
+                />
               </div>
             </div>
           </div>
@@ -81,31 +82,32 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Fitur Relaksasi */}
+      {/* Fitur Game Relaksasi */}
       <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-purple-900 mb-12">
-            Fitur Relaksasi
+            Fitur Game Relaksasi
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard 
-              icon={<Heart className="h-8 w-8 text-purple-700" />}
-              title="Meditasi"
-              description="Dengarkan panduan meditasi yang membantu menenangkan pikiran"
-            />
-            <FeatureCard 
-              icon={<Heart className="h-8 w-8 text-purple-700" />}
-              title="Musik Terapi"
-              description="Dengarkan musik terapi yang membantu meredakan stres dan kecemasan"
-            />
-            <FeatureCard 
-              icon={<Heart className="h-8 w-8 text-purple-700" />}
+            <GameCard 
               title="Game Santai"
-              description="Mainkan game santai yang dirancang khusus untuk meredakan mental health"
+              description="Mainkan game santai yang dirancang khusus untuk meredakan stres dan kecemasan"
+              icons={<icons.Gamepad className="h-8 w-8 text-purple-700" />}
+            />
+            <GameCard 
+              title="Game Meditasi"
+              description="Nikmati meditasi singkat dan efektif untuk menenangkan pikiran dan tubuh"
+              icons={<icons.Sun className="h-8 w-8 text-purple-700" />}
+            />
+            <GameCard 
+              title="Game Kognitif"
+              description="Latih otak dan kognisi Anda dengan berbagai permainan kognitif menarik"
+              icons={<icons.Activity className="h-8 w-8 text-purple-700" />}
             />
           </div>
         </div>
       </div>
+      
 
       {/* Footer */}
       <footer className="bg-purple-900 text-white py-8">
@@ -141,6 +143,21 @@ const Step = ({ number, title, description }: {
   <div className="flex flex-col items-center text-center max-w-xs">
     <div className="w-12 h-12 rounded-full bg-purple-700 text-white flex items-center justify-center text-xl font-bold mb-4">
       {number}
+    </div>
+    <h3 className="text-xl font-semibold text-purple-900 mb-2">{title}</h3>
+    <p className="text-gray-600">{description}</p>
+  </div>
+);
+
+// Component untuk Fitur GameCard
+const GameCard = ({ title, description, icons }: {
+  title: string;
+  description: string;
+  icons: React.ReactNode;
+}) => (
+  <div className="p-6 rounded-xl bg-purple-50 hover:bg-purple-100 transition-colors">
+    <div className="mb-4">
+      {icons}
     </div>
     <h3 className="text-xl font-semibold text-purple-900 mb-2">{title}</h3>
     <p className="text-gray-600">{description}</p>

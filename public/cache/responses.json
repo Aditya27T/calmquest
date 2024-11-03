@@ -1,0 +1,28 @@
+{
+    "responses": {
+      "low-stress-low-depression-neutral": {
+        "summary": "Kondisi kesehatan mental Anda saat ini berada dalam rentang normal, dengan tingkat stres dan depresi yang rendah. Ekspresi wajah yang cenderung netral juga mengindikasikan keseimbangan emosional yang baik. Ini menunjukkan bahwa Anda memiliki kemampuan coping yang efektif dalam menghadapi tantangan sehari-hari.",
+        "correlation": "Hasil PSS yang rendah sejalan dengan skor BDI yang juga rendah, menunjukkan bahwa Anda berhasil mengelola stres dengan baik sehingga tidak berkembang menjadi gejala depresi. Ekspresi wajah yang netral mengkonfirmasi kemampuan Anda dalam menjaga stabilitas emosi. Keselarasan ini menggambarkan kondisi kesehatan mental yang seimbang.",
+        "recommendations": [
+          "Lakukan meditasi singkat 10 menit setiap pagi untuk mempertahankan keseimbangan mental",
+          "Pertahankan rutinitas olahraga ringan seperti jalan kaki 30 menit setiap hari",
+          "Luangkan waktu untuk hobi atau aktivitas yang membuat Anda senang minimal 2 kali seminggu",
+          "Jaga komunikasi rutin dengan keluarga dan teman melalui pertemuan atau video call",
+          "Terapkan journaling sebelum tidur untuk mencatat hal positif yang terjadi setiap hari"
+        ],
+        "professionalHelp": "Tidak - Kondisi kesehatan mental Anda stabil dan Anda memiliki kemampuan yang baik dalam mengelola stres. Namun, tetap perhatikan jika ada perubahan signifikan dalam mood atau tingkat stres Anda."
+      },
+      "moderate-stress-low-depression-sad": {
+        "summary": "Hasil assessment menunjukkan tingkat stres sedang dengan kecenderungan depresi ringan. Ekspresi wajah yang menunjukkan kesedihan mengindikasikan bahwa Anda mungkin sedang menghadapi beberapa tantangan emosional. Meski demikian, kondisi ini masih dalam rentang yang dapat dikelola dengan baik.",
+        "correlation": "Tingkat stres sedang yang Anda alami tampaknya mempengaruhi mood Anda, terlihat dari ekspresi wajah yang cenderung sedih. Meskipun level depresi masih ringan, kombinasi ini menunjukkan perlunya perhatian khusus pada manajemen stres dan dukungan emosional. Pola ini umum terjadi ketika seseorang menghadapi periode yang menantang dalam hidupnya.",
+        "recommendations": [
+          "Praktikkan teknik pernapasan dalam selama 5 menit setiap kali merasa stres",
+          "Ikuti kelas yoga online atau latihan relaksasi otot progresif 3 kali seminggu",
+          "Buat jadwal aktivitas menyenangkan seperti mendengarkan musik atau membaca buku ringan",
+          "Bergabung dengan grup hobi atau komunitas online untuk berbagi pengalaman",
+          "Tetapkan rutinitas tidur yang teratur dengan waktu tidur dan bangun yang konsisten"
+        ],
+        "professionalHelp": "Ya - Meskipun kondisi Anda masih dalam tahap ringan-sedang, konsultasi dengan profesional dapat membantu mencegah berkembangnya gejala dan memberikan strategi manajemen stres yang lebih efektif."
+      }
+    }
+  }

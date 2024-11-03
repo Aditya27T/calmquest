@@ -1,0 +1,83 @@
+{
+    "emergencyContacts": [
+      {
+        "category": "Layanan Krisis 24 Jam",
+        "contacts": [
+          {
+            "name": "119 - Emergency Call Center",
+            "description": "Layanan darurat kesehatan 24 jam",
+            "phone": "119",
+            "available": "24 Jam",
+            "type": "emergency"
+          },
+          {
+            "name": "Hotline Kesehatan Jiwa",
+            "description": "Layanan konsultasi kesehatan jiwa gratis",
+            "phone": "500-454",
+            "available": "24 Jam",
+            "type": "emergency"
+          },
+          {
+            "name": "Kemenkes - Sehat Jiwa",
+            "description": "Layanan informasi kesehatan jiwa",
+            "phone": "0812-1226-0676",
+            "available": "08.00 - 16.00 WIB",
+            "type": "info"
+          }
+        ]
+      }
+    ],
+    "hospitals": [
+      {
+        "name": "RSJ Dr. Soeharto Heerdjan",
+        "location": "Jakarta Barat",
+        "address": "Jl. Prof. Dr. Latumenten No.1, Jakarta Barat",
+        "phone": "(021) 5682841",
+        "services": ["Rawat Inap", "Rawat Jalan", "Konsultasi Psikiater", "Rehabilitasi"],
+        "coords": {
+          "lat": -6.1527,
+          "lng": 106.7975
+        }
+      },
+      {
+        "name": "RSJ Dr. Marzoeki Mahdi",
+        "location": "Bogor",
+        "address": "Jl. Dr. Sumeru No.114, Bogor",
+        "phone": "(0251) 8324024",
+        "services": ["Rawat Inap", "Rawat Jalan", "Konsultasi Psikiater", "Terapi Kelompok"],
+        "coords": {
+          "lat": -6.5947,
+          "lng": 106.7892
+        }
+      },
+      {
+        "name": "RSJ Prof. Dr. Soerojo",
+        "location": "Magelang",
+        "address": "Jl. Ahmad Yani No.169, Magelang",
+        "phone": "(0293) 363601",
+        "services": ["Rawat Inap", "Rawat Jalan", "Rehabilitasi Mental", "Konsultasi Psikiater"],
+        "coords": {
+          "lat": -7.4797,
+          "lng": 110.2177
+        }
+      }
+    ],
+    "onlineServices": [
+      {
+        "name": "Halodoc",
+        "description": "Konsultasi online dengan psikiater dan psikolog berpengalaman",
+        "website": "https://www.halodoc.com",
+        "price": "Mulai dari Rp 150.000/sesi",
+        "available": "24/7",
+        "services": ["Konsultasi Chat", "Video Call", "Resep Digital"]
+      },
+      {
+        "name": "Alodokter",
+        "description": "Layanan konsultasi kesehatan mental online",
+        "website": "https://www.alodokter.com",
+        "price": "Mulai dari Rp 100.000/sesi",
+        "available": "08.00 - 21.00 WIB",
+        "services": ["Konsultasi Chat", "Artikel Kesehatan", "Direktori Dokter"]
+      }
+    ]
+  }
