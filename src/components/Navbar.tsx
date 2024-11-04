@@ -41,6 +41,9 @@ const Navbar = () => {
               <Link href="/game" className="text-gray-600 hover:text-purple-700 transition-colors">
                 Game
               </Link>
+              <Link href="/articles" className="text-gray-600 hover:text-purple-700 transition-colors">
+                Artikel
+              </Link>
               <Link href="/about-us" className="text-gray-600 hover:text-purple-700 transition-colors">
                 Tentang Kami
               </Link>

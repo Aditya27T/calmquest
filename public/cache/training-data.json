@@ -335,17 +335,88 @@
       "stressLevel": "medium",
       "timestamp": "2024-11-04T14:09:25.183Z",
       "sessionId": "1730729331279"
+    },
+    {
+      "userMessage": "saya merasa sangat ngantuk setiap jam",
+      "botResponse": "Saya memahami rasa kantuk yang kamu alami. Penting untuk menjaga pola tidur yang teratur dan cukup istirahat. Cobalah membuat jadwal tidur yang konsisten dan pastikan kamar tidur gelap, tenang, dan sejuk. Jika masalah berlanjut, jangan ragu untuk mencari bantuan profesional.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T14:49:46.150Z",
+      "sessionId": "1730731461841"
+    },
+    {
+      "userMessage": "1+2?",
+      "botResponse": "Tenang, tidak apa-apa. Kita coba bersama ya. Jawabannya adalah 3.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T14:50:59.348Z",
+      "sessionId": "1730731461841"
+    },
+    {
+      "userMessage": "apakah benar bumi itu bulat?",
+      "botResponse": "Wah, pertanyaan yang menarik! Bumi itu memang bulat, lho. Bentuknya seperti bola yang pipih di bagian kutubnya.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T14:51:16.900Z",
+      "sessionId": "1730731461841"
+    },
+    {
+      "userMessage": "saya merasa sangat ngantuk setiap jam",
+      "botResponse": "Saya memahami rasa kantuk yang kamu alami. Penting untuk menjaga pola tidur yang teratur dan cukup istirahat. Cobalah membuat jadwal tidur yang konsisten dan pastikan kamar tidur gelap, tenang, dan sejuk. Jika masalah berlanjut, jangan ragu untuk mencari bantuan profesional.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T14:49:46.150Z",
+      "sessionId": "1730731461841"
+    },
+    {
+      "userMessage": "1+2?",
+      "botResponse": "Tenang, tidak apa-apa. Kita coba bersama ya. Jawabannya adalah 3.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T14:50:59.348Z",
+      "sessionId": "1730731461841"
+    },
+    {
+      "userMessage": "apakah benar bumi itu bulat?",
+      "botResponse": "Wah, pertanyaan yang menarik! Bumi itu memang bulat, lho. Bentuknya seperti bola yang pipih di bagian kutubnya.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T14:51:16.900Z",
+      "sessionId": "1730731461841"
+    },
+    {
+      "userMessage": "koontol",
+      "botResponse": "Aku tahu kamu sedang merasa sangat stres saat ini. Aku paham tidak mudah menghadapi ini semua. Ada baiknya kita mencoba mencari bantuan profesional yang bisa membantu kamu mengatasi stres dengan lebih baik.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T17:36:30.385Z",
+      "sessionId": "1730741779345",
+      "messageType": "normal"
+    },
+    {
+      "userMessage": "anjing",
+      "botResponse": "Mohon gunakan bahasa yang lebih sopan. Saya di sini untuk membantu Anda dengan cara yang positif dan mendukung.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T17:36:23.006Z",
+      "sessionId": "1730741779345"
+    },
+    {
+      "userMessage": "koontol",
+      "botResponse": "Aku tahu kamu sedang merasa sangat stres saat ini. Aku paham tidak mudah menghadapi ini semua. Ada baiknya kita mencoba mencari bantuan profesional yang bisa membantu kamu mengatasi stres dengan lebih baik.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T17:36:30.385Z",
+      "sessionId": "1730741779345"
+    },
+    {
+      "userMessage": "kontol",
+      "botResponse": "Mohon gunakan bahasa yang lebih sopan. Saya di sini untuk membantu Anda dengan cara yang positif dan mendukung.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T17:36:34.729Z",
+      "sessionId": "1730741779345"
     }
   ],
   "metadata": {
-    "lastUpdated": "2024-11-04T14:09:33.064Z",
-    "totalConversations": 48,
+    "lastUpdated": "2024-11-04T17:53:31.202Z",
+    "totalConversations": 58,
     "performanceMetrics": {
       "averageEffectiveness": 5,
       "stressLevelDistribution": {
-        "low": 14,
-        "medium": 21,
-        "high": 13
+        "low": 20,
+        "medium": 23,
+        "high": 15
       }
     }
   }

@@ -111,8 +111,8 @@ export default function LandingPage() {
               <p className="text-purple-200">Tidak Mencari Bantuan Professional</p>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold mb-2">85%</div>
-              <p className="text-purple-200">Bisa Pulih dengan Penanganan Tepat</p>
+              <div className="text-3xl font-bold mb-2">6%</div>
+              <p className="text-purple-200">Penderita depresi yang menerima pelayanan dengan tepat</p>
             </div>
           </div>
         </div>
