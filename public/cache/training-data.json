@@ -116,17 +116,45 @@
       "stressLevel": "medium",
       "timestamp": "2024-11-03T12:44:47.698Z",
       "sessionId": "1730637358694"
+    },
+    {
+      "userMessage": "kamu tau ali uraidhy kah?",
+      "botResponse": "Saya tidak tahu Ali Uraidhy. Apakah Anda ingin membicarakan hal lain yang membuat Anda stres? Saya di sini untuk mendengarkan dan mendukung Anda.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T13:35:11.378Z",
+      "sessionId": "1730640499693"
+    },
+    {
+      "userMessage": "kamu tau ali uraidhy kah?",
+      "botResponse": "Saya tidak tahu Ali Uraidhy. Apakah Anda ingin membicarakan hal lain yang membuat Anda stres? Saya di sini untuk mendengarkan dan mendukung Anda.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T13:35:11.377Z",
+      "sessionId": "1730640499693"
+    },
+    {
+      "userMessage": "saya sedang dijauhi teman",
+      "botResponse": "Saya memahami kamu merasa sulit karena dijauhi teman. Ingatlah bahwa kamu berharga dan layak mendapatkan persahabatan yang baik. Mungkin ada alasan yang mendasarinya, apakah kamu mau membicarakannya?",
+      "stressLevel": "high",
+      "timestamp": "2024-11-03T16:10:52.823Z",
+      "sessionId": "1730650081064"
+    },
+    {
+      "userMessage": "saya sedang dijauhi teman",
+      "botResponse": "Saya memahami kamu merasa sulit karena dijauhi teman. Ingatlah bahwa kamu berharga dan layak mendapatkan persahabatan yang baik. Mungkin ada alasan yang mendasarinya, apakah kamu mau membicarakannya?",
+      "stressLevel": "high",
+      "timestamp": "2024-11-03T16:10:52.823Z",
+      "sessionId": "1730650081064"
     }
   ],
   "metadata": {
-    "lastUpdated": "2024-11-03T12:45:09.483Z",
-    "totalConversations": 17,
+    "lastUpdated": "2024-11-03T16:11:10.103Z",
+    "totalConversations": 21,
     "performanceMetrics": {
       "averageEffectiveness": 5,
       "stressLevelDistribution": {
-        "low": 10,
+        "low": 12,
         "medium": 6,
-        "high": 1
+        "high": 3
       }
     }
   }
