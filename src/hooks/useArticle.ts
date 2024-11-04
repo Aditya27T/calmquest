@@ -10,9 +10,7 @@ export const useFetchArticles = () => {
         const fetchArticles = async () => {
             try {
                 setLoading(true);
-                setError(null);
-                
-                // Fetch dari file JSON lokal di folder public
+                setError(null);                
                 const response = await fetch('/data/all-articles.json');
                 
                 if (!response.ok) {
