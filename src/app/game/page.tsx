@@ -44,7 +44,7 @@ export default function GamePage() {
                   description="Latihan pernapasan interaktif dengan visualisasi yang menenangkan"
                   route="/game/breath-flow"
                   difficulty="Mudah"
-                  duration="5-10 menit"
+                  duration="1 menit"
                 />
               </div>
             </div>

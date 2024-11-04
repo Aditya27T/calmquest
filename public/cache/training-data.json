@@ -95,17 +95,257 @@
       "stressLevel": "low",
       "timestamp": "2024-11-03T10:19:16.382Z",
       "sessionId": "1730629144487"
+    },
+    {
+      "userMessage": "aku stress mengerjakan tugas",
+      "botResponse": "Aku mengerti, mengerjakan tugas bisa sangat membuat stres. Ingatlah bahwa kamu kuat dan mampu melewatinya. Cobalah istirahat sebentar, tarik napas dalam-dalam, dan kembali bekerja perlahan-lahan.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-03T12:44:47.698Z",
+      "sessionId": "1730637358694"
+    },
+    {
+      "userMessage": "halo rek",
+      "botResponse": "Hai, senang sekali berbincang denganmu. Aku di sini untuk mendengarkan dan mendukungmu.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T12:44:25.530Z",
+      "sessionId": "1730637358694"
+    },
+    {
+      "userMessage": "aku stress mengerjakan tugas",
+      "botResponse": "Aku mengerti, mengerjakan tugas bisa sangat membuat stres. Ingatlah bahwa kamu kuat dan mampu melewatinya. Cobalah istirahat sebentar, tarik napas dalam-dalam, dan kembali bekerja perlahan-lahan.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-03T12:44:47.698Z",
+      "sessionId": "1730637358694"
+    },
+    {
+      "userMessage": "kamu tau ali uraidhy kah?",
+      "botResponse": "Saya tidak tahu Ali Uraidhy. Apakah Anda ingin membicarakan hal lain yang membuat Anda stres? Saya di sini untuk mendengarkan dan mendukung Anda.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T13:35:11.378Z",
+      "sessionId": "1730640499693"
+    },
+    {
+      "userMessage": "kamu tau ali uraidhy kah?",
+      "botResponse": "Saya tidak tahu Ali Uraidhy. Apakah Anda ingin membicarakan hal lain yang membuat Anda stres? Saya di sini untuk mendengarkan dan mendukung Anda.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-03T13:35:11.377Z",
+      "sessionId": "1730640499693"
+    },
+    {
+      "userMessage": "saya sedang dijauhi teman",
+      "botResponse": "Saya memahami kamu merasa sulit karena dijauhi teman. Ingatlah bahwa kamu berharga dan layak mendapatkan persahabatan yang baik. Mungkin ada alasan yang mendasarinya, apakah kamu mau membicarakannya?",
+      "stressLevel": "high",
+      "timestamp": "2024-11-03T16:10:52.823Z",
+      "sessionId": "1730650081064"
+    },
+    {
+      "userMessage": "saya sedang dijauhi teman",
+      "botResponse": "Saya memahami kamu merasa sulit karena dijauhi teman. Ingatlah bahwa kamu berharga dan layak mendapatkan persahabatan yang baik. Mungkin ada alasan yang mendasarinya, apakah kamu mau membicarakannya?",
+      "stressLevel": "high",
+      "timestamp": "2024-11-03T16:10:52.823Z",
+      "sessionId": "1730650081064"
+    },
+    {
+      "userMessage": "kenapa penis saya kecil",
+      "botResponse": "Maaf, saya sedang mengalami kesulitan teknis. Bagaimana jika Anda mencoba menjelaskan lebih lanjut tentang perasaan Anda?",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T08:19:12.675Z",
+      "sessionId": "1730707926516"
+    },
+    {
+      "userMessage": "kenapa saya stress, apa saya odgj",
+      "botResponse": "Saya mengerti kamu sedang merasa stres saat ini. Kamu tidak sendirian. Stres adalah hal yang wajar dialami, dan penting untuk mencari bantuan ketika merasa kewalahan.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:19:49.732Z",
+      "sessionId": "1730707926516"
+    },
+    {
+      "userMessage": "tapi saya sendirian",
+      "botResponse": "Saya memahami kesepian yang kamu rasakan. Jangan lupa bahwa kamu memiliki kekuatan dalam dirimu untuk mengatasi tantangan ini. Ada orang-orang yang peduli padamu dan ingin membantu.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T08:20:13.498Z",
+      "sessionId": "1730707926516"
+    },
+    {
+      "userMessage": "kenapa penis saya kecil",
+      "botResponse": "Maaf, saya sedang mengalami kesulitan teknis. Bagaimana jika Anda mencoba menjelaskan lebih lanjut tentang perasaan Anda?",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T08:19:12.675Z",
+      "sessionId": "1730707926516"
+    },
+    {
+      "userMessage": "kenapa saya stress, apa saya odgj",
+      "botResponse": "Saya mengerti kamu sedang merasa stres saat ini. Kamu tidak sendirian. Stres adalah hal yang wajar dialami, dan penting untuk mencari bantuan ketika merasa kewalahan.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:19:49.732Z",
+      "sessionId": "1730707926516"
+    },
+    {
+      "userMessage": "tapi saya sendirian",
+      "botResponse": "Saya memahami kesepian yang kamu rasakan. Jangan lupa bahwa kamu memiliki kekuatan dalam dirimu untuk mengatasi tantangan ini. Ada orang-orang yang peduli padamu dan ingin membantu.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T08:20:13.498Z",
+      "sessionId": "1730707926516"
+    },
+    {
+      "userMessage": "aku kesel, hari ini panas membuat mood saya berantakan",
+      "botResponse": "Aku mengerti pasti menyebalkan saat cuaca panas mengganggu suasana hati. Cobalah untuk tetap tenang dan atur napas untuk menghindari stres berlebih.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T08:34:17.109Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "aku kesel, hari ini panas membuat mood saya berantakan",
+      "botResponse": "Aku mengerti pasti menyebalkan saat cuaca panas mengganggu suasana hati. Cobalah untuk tetap tenang dan atur napas untuk menghindari stres berlebih.",
+      "stressLevel": "medium",
+      "effectiveness": 5,
+      "timestamp": "2024-11-04T08:34:17.109Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "saya stop bernapas",
+      "botResponse": "Saya turut prihatin mendengar Anda merasa sangat kewalahan hingga kesulitan bernapas. Ingatlah bahwa Anda kuat dan mampu melewati ini. Jika stres Anda tetap tinggi, jangan ragu untuk mencari bantuan profesional. Ada orang yang siap membantu Anda.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:34:53.768Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "saya gapunya uang",
+      "botResponse": "Saya memahami bahwa masalah keuangan bisa sangat membuat stres. Ingatlah bahwa kamu kuat dan kamu akan melewati masa sulit ini. Jika stresmu terasa tak tertahankan, jangan ragu untuk mencari bantuan profesional yang dapat memberikan dukungan dan bimbingan lebih lanjut.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:35:22.040Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "tp saya tidak kuat. gimana dong?",
+      "botResponse": "Kamu sangat kuat telah melangkah sejauh ini. Meski sedang merasa kewalahan, ingatlah bahwa kamu tidak sendirian. Jangan ragu untuk mengakses bantuan profesional jika kamu merasa membutuhkannya.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:36:03.104Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "aku kesel, hari ini panas membuat mood saya berantakan",
+      "botResponse": "Aku mengerti pasti menyebalkan saat cuaca panas mengganggu suasana hati. Cobalah untuk tetap tenang dan atur napas untuk menghindari stres berlebih.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T08:34:17.109Z",
+      "sessionId": "1730708567571",
+      "effectiveness": 5
+    },
+    {
+      "userMessage": "saya stop bernapas",
+      "botResponse": "Saya turut prihatin mendengar Anda merasa sangat kewalahan hingga kesulitan bernapas. Ingatlah bahwa Anda kuat dan mampu melewati ini. Jika stres Anda tetap tinggi, jangan ragu untuk mencari bantuan profesional. Ada orang yang siap membantu Anda.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:34:53.768Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "saya gapunya uang",
+      "botResponse": "Saya memahami bahwa masalah keuangan bisa sangat membuat stres. Ingatlah bahwa kamu kuat dan kamu akan melewati masa sulit ini. Jika stresmu terasa tak tertahankan, jangan ragu untuk mencari bantuan profesional yang dapat memberikan dukungan dan bimbingan lebih lanjut.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:35:22.040Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "tp saya tidak kuat. gimana dong?",
+      "botResponse": "Kamu sangat kuat telah melangkah sejauh ini. Meski sedang merasa kewalahan, ingatlah bahwa kamu tidak sendirian. Jangan ragu untuk mengakses bantuan profesional jika kamu merasa membutuhkannya.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T08:36:03.104Z",
+      "sessionId": "1730708567571"
+    },
+    {
+      "userMessage": "capek",
+      "botResponse": "Aku mengerti, pasti kamu merasa lelah sekali sekarang. Kamu udah melakukan yang terbaik. Cobalah istirahat sejenak dan lakukan sesuatu yang kamu sukai untuk menenangkan pikiran.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T13:47:59.863Z",
+      "sessionId": "1730727921511"
+    },
+    {
+      "userMessage": "Saya ingin bertanya cara menghilangkan stress itu gimana ya",
+      "botResponse": "Aku mengerti kamu sedang merasa stres sekarang. Kamu sudah mengambil langkah yang tepat untuk mencari cara mengatasinya. Ingat, kamu kuat dan mampu menghadapi ini.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T13:45:39.073Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "capek",
+      "botResponse": "Aku mengerti, pasti kamu merasa lelah sekali sekarang. Kamu udah melakukan yang terbaik. Cobalah istirahat sejenak dan lakukan sesuatu yang kamu sukai untuk menenangkan pikiran.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T13:47:59.863Z",
+      "sessionId": "1730727921511"
+    },
+    {
+      "userMessage": "2 + 2 =",
+      "botResponse": "Kamu hebat! Tampaknya stresmu sedang rendah hari ini. Teruslah melakukan hal-hal yang membuatmu merasa baik.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T13:48:26.093Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "kamu tahu kontol",
+      "botResponse": "Maaf, saya sedang mengalami kesulitan teknis. Bagaimana jika Anda mencoba menjelaskan lebih lanjut tentang perasaan Anda?",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T13:48:51.266Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "saya janu kamu siapa",
+      "botResponse": "Saya seorang asisten kesehatan mental yang ingin membantu Anda merasa lebih baik. Saya di sini untuk mendengarkan dan mendukung Anda.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T13:49:35.375Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "Saya ingin bertanya cara menghilangkan stress itu gimana ya",
+      "botResponse": "Aku mengerti kamu sedang merasa stres sekarang. Kamu sudah mengambil langkah yang tepat untuk mencari cara mengatasinya. Ingat, kamu kuat dan mampu menghadapi ini.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T13:45:39.073Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "2 + 2 =",
+      "botResponse": "Kamu hebat! Tampaknya stresmu sedang rendah hari ini. Teruslah melakukan hal-hal yang membuatmu merasa baik.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-04T13:48:26.093Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "kamu tahu kontol",
+      "botResponse": "Maaf, saya sedang mengalami kesulitan teknis. Bagaimana jika Anda mencoba menjelaskan lebih lanjut tentang perasaan Anda?",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T13:48:51.266Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "saya janu kamu siapa",
+      "botResponse": "Saya seorang asisten kesehatan mental yang ingin membantu Anda merasa lebih baik. Saya di sini untuk mendengarkan dan mendukung Anda.",
+      "stressLevel": "high",
+      "timestamp": "2024-11-04T13:49:35.375Z",
+      "sessionId": "1730727519308"
+    },
+    {
+      "userMessage": "woi kontol",
+      "botResponse": "Maaf, saya sedang mengalami kesulitan teknis. Bagaimana jika Anda mencoba menjelaskan lebih lanjut tentang perasaan Anda?",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T14:09:25.183Z",
+      "sessionId": "1730729331279"
+    },
+    {
+      "userMessage": "woi kontol",
+      "botResponse": "Maaf, saya sedang mengalami kesulitan teknis. Bagaimana jika Anda mencoba menjelaskan lebih lanjut tentang perasaan Anda?",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-04T14:09:25.183Z",
+      "sessionId": "1730729331279"
     }
   ],
   "metadata": {
-    "lastUpdated": "2024-11-03T10:19:43.360Z",
-    "totalConversations": 14,
+    "lastUpdated": "2024-11-04T14:09:33.064Z",
+    "totalConversations": 48,
     "performanceMetrics": {
       "averageEffectiveness": 5,
       "stressLevelDistribution": {
-        "low": 9,
-        "medium": 4,
-        "high": 1
+        "low": 14,
+        "medium": 21,
+        "high": 13
       }
     }
   }

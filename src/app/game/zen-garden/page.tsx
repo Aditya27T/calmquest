@@ -35,33 +35,126 @@ export default function ZenGardenGame() {
   const [rakePattern, setRakePattern] = useState<'wave' | 'circle' | 'straight'>('wave');
   const [elementSize, setElementSize] = useState(20);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [lastPoint, setLastPoint] = useState<Point | null>(null);
+  const [audioError, setAudioError] = useState<string | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playPromiseRef = useRef<Promise<void> | null>(null);
 
   useEffect(() => {
-    // Initialize audio
-    audioRef.current = new Audio('/sounds/zen-background.mp3');
-    audioRef.current.loop = true;
+    let mounted = true;
+    const audio = new Audio('/audio/zen-background.mp3');
     
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
+    const handleError = (e: Event) => {
+      if (!mounted) return;
+      
+      const audioElement = e.target as HTMLAudioElement;
+      let errorMessage = 'Unknown audio error';
+      
+      if (audioElement.error) {
+        switch (audioElement.error.code) {
+          case MediaError.MEDIA_ERR_ABORTED:
+            errorMessage = 'Audio playback was aborted';
+            break;
+          case MediaError.MEDIA_ERR_NETWORK:
+            errorMessage = 'Network error while loading audio';
+            break;
+          case MediaError.MEDIA_ERR_DECODE:
+            errorMessage = 'Audio decoding error';
+            break;
+          case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
+            errorMessage = 'Audio format not supported';
+            break;
+        }
       }
+      
+      console.error('Audio error:', errorMessage);
+      setAudioError(errorMessage);
+      setIsPlaying(false);
+      setIsLoading(false);
+    };
+
+    const handleCanPlay = () => {
+      if (!mounted) return;
+      
+      console.log('Audio loaded successfully');
+      setAudioError(null);
+      setIsLoading(false);
+      audioRef.current = audio;
+    };
+
+    audio.addEventListener('error', handleError);
+    audio.addEventListener('canplay', handleCanPlay);
+    audio.loop = true;
+    
+    // Preload the audio
+    audio.load();
+
+    // Check if audio is already loaded
+    if (audio.readyState >= 3) {
+      handleCanPlay();
+    }
+
+    return () => {
+      mounted = false;
+      audio.removeEventListener('error', handleError);
+      audio.removeEventListener('canplay', handleCanPlay);
+      
+      // Cancel any pending play promise
+      if (playPromiseRef.current) {
+        playPromiseRef.current.then(() => {
+          if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+          }
+        }).catch(() => {
+          // Ignore any errors during cleanup
+        });
+      } else if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+      
+      audioRef.current = null;
     };
   }, []);
 
-  const toggleMusic = () => {
-    if (audioRef.current) {
+  const toggleMusic = async () => {
+    if (!audioRef.current || audioError || isLoading) {
+      console.log('Audio not available, error present, or still loading');
+      return;
+    }
+
+    try {
+      // If there's a pending play operation, wait for it
+      if (playPromiseRef.current) {
+        await playPromiseRef.current;
+      }
+
       if (isPlaying) {
         audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        setIsPlaying(false);
+        playPromiseRef.current = null;
       } else {
-        audioRef.current.play();
+        // Store the play promise
+        playPromiseRef.current = audioRef.current.play();
+        
+        try {
+          await playPromiseRef.current;
+          setIsPlaying(true);
+        } finally {
+          playPromiseRef.current = null;
+        }
       }
-      setIsPlaying(!isPlaying);
+    } catch (error) {
+      console.error('Audio playback error:', error);
+      setAudioError(error instanceof Error ? error.message : 'Audio playback failed');
+      setIsPlaying(false);
+      playPromiseRef.current = null;
     }
   };
-
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
