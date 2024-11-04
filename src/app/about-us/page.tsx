@@ -6,28 +6,28 @@ import { Card } from '@/components/ui/card';
 
 const teamMembers = [
   {
-    name: "Ambatukam",
-    role: "Project Manager, Fullstack Developer, AI Engineer",
+    name: "Dea Alensa",
+    role: "Project Manager",
     image: "https://pbs.twimg.com/media/GYUnJB8bkAADhnH.jpg"
   },
   {
-    name: "Jane Smith",
-    role: "Frontend Developer",
+    name: "Aditya Eka Rahmadani",
+    role: "Fullstack Developer",
     image: "https://pbs.twimg.com/media/GYUnJB8bkAADhnH.jpg"
   },
   {
-    name: "David Wilson",
-    role: "AI & Machine Learning Engineer",
+    name: "Amelia Novelinda",
+    role: "Desain Grafis",
     image: "https://pbs.twimg.com/media/GYUnJB8bkAADhnH.jpg"
   },
   {
-    name: "Sarah Chen",
-    role: "Psychology Expert",
+    name: "Fajar Pramudya Ananta Purba",
+    role: "UI/UX Designer",
     image: "https://pbs.twimg.com/media/GYUnJB8bkAADhnH.jpg"
   },
   {
-    name: "Michael Brown",
-    role: "Quality Assurance Engineer",
+    name: "Januarta Madi Pratama Putra",
+    role: "Quality Assurance And Documentation",
     image: "https://pbs.twimg.com/media/GYUnJB8bkAADhnH.jpg"
   }
 ];
