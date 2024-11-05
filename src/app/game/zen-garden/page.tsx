@@ -29,6 +29,7 @@ interface Element {
 
 export default function ZenGardenGame() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [isDrawing, setIsDrawing] = useState(false);
   const [elements, setElements] = useState<Element[]>([]);
   const [tool, setTool] = useState<'rake' | 'rock' | 'plant'>('rake');
@@ -41,6 +42,7 @@ export default function ZenGardenGame() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playPromiseRef = useRef<Promise<void> | null>(null);
 
+  // Initialize audio
   useEffect(() => {
     let mounted = true;
     const audio = new Audio('/audio/Mahjong.mp3');
@@ -68,7 +70,6 @@ export default function ZenGardenGame() {
         }
       }
       
-      console.error('Audio error:', errorMessage);
       setAudioError(errorMessage);
       setIsPlaying(false);
       setIsLoading(false);
@@ -76,8 +77,6 @@ export default function ZenGardenGame() {
 
     const handleCanPlay = () => {
       if (!mounted) return;
-      
-      console.log('Audio loaded successfully');
       setAudioError(null);
       setIsLoading(false);
       audioRef.current = audio;
@@ -86,11 +85,8 @@ export default function ZenGardenGame() {
     audio.addEventListener('error', handleError);
     audio.addEventListener('canplay', handleCanPlay);
     audio.loop = true;
-    
-    // Preload the audio
     audio.load();
 
-    // Check if audio is already loaded
     if (audio.readyState >= 3) {
       handleCanPlay();
     }
@@ -100,16 +96,13 @@ export default function ZenGardenGame() {
       audio.removeEventListener('error', handleError);
       audio.removeEventListener('canplay', handleCanPlay);
       
-      // Cancel any pending play promise
       if (playPromiseRef.current) {
         playPromiseRef.current.then(() => {
           if (audio) {
             audio.pause();
             audio.currentTime = 0;
           }
-        }).catch(() => {
-          // Ignore any errors during cleanup
-        });
+        }).catch(() => {});
       } else if (audio) {
         audio.pause();
         audio.currentTime = 0;
@@ -119,14 +112,42 @@ export default function ZenGardenGame() {
     };
   }, []);
 
-  const toggleMusic = async () => {
-    if (!audioRef.current || audioError || isLoading) {
-      console.log('Audio not available, error present, or still loading');
-      return;
+  // Handle canvas resize
+ // Handle canvas resize
+useEffect(() => {
+  const handleResize = () => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    // Set canvas size based on container
+    const rect = container.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+
+    // Redraw canvas contents
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      drawBackground(ctx);
+      drawElements(ctx);
     }
+  };
+
+  // Initial setup
+  handleResize();
+
+  // Add resize listener
+  window.addEventListener('resize', handleResize);
+
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, [elements]);
+
+  const toggleMusic = async () => {
+    if (!audioRef.current || audioError || isLoading) return;
 
     try {
-      // If there's a pending play operation, wait for it
       if (playPromiseRef.current) {
         await playPromiseRef.current;
       }
@@ -137,9 +158,7 @@ export default function ZenGardenGame() {
         setIsPlaying(false);
         playPromiseRef.current = null;
       } else {
-        // Store the play promise
         playPromiseRef.current = audioRef.current.play();
-        
         try {
           await playPromiseRef.current;
           setIsPlaying(true);
@@ -148,62 +167,46 @@ export default function ZenGardenGame() {
         }
       }
     } catch (error) {
-      console.error('Audio playback error:', error);
       setAudioError(error instanceof Error ? error.message : 'Audio playback failed');
       setIsPlaying(false);
       playPromiseRef.current = null;
     }
   };
-  
-  useEffect(() => {
+
+  const getCanvasPoint = (clientX: number, clientY: number): Point => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) return { x: 0, y: 0 };
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    // Set canvas size
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-
-    // Initial sand background
-    drawBackground(ctx);
-    
-    // Draw elements
-    drawElements(ctx);
-  }, []);
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (clientX - rect.left) * (canvas.width / rect.width),
+      y: (clientY - rect.top) * (canvas.height / rect.height)
+    };
+  };
 
   const drawBackground = (ctx: CanvasRenderingContext2D) => {
-    ctx.fillStyle = '#f5e6d3'; // Sand color
+    ctx.fillStyle = '#f5e6d3';
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   };
 
-  const drawElements = (ctx: CanvasRenderingContext2D) => {
-    elements.forEach(element => {
-      if (element.type === 'rock') {
-        drawRock(ctx, element.x, element.y, element.size);
-      } else {
-        drawPlant(ctx, element.x, element.y, element.size);
-      }
-    });
-  };
-
   const drawRock = (ctx: CanvasRenderingContext2D, x: number, y: number, size: number) => {
-    ctx.fillStyle = '#666666';
-    ctx.beginPath();
-    ctx.ellipse(x, y, size, size * 0.8, 0, 0, Math.PI * 2);
-    ctx.fill();
-    
-    // Add shadow
+    // Shadow
     ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
     ctx.beginPath();
     ctx.ellipse(x + 2, y + 2, size, size * 0.8, 0, 0, Math.PI * 2);
     ctx.fill();
+    
+    // Rock
+    ctx.fillStyle = '#666666';
+    ctx.beginPath();
+    ctx.ellipse(x, y, size, size * 0.8, 0, 0, Math.PI * 2);
+    ctx.fill();
   };
 
   const drawPlant = (ctx: CanvasRenderingContext2D, x: number, y: number, size: number) => {
-    ctx.fillStyle = '#4a9c5d';
-    // Draw multiple grass-like strokes
+    ctx.strokeStyle = '#4a9c5d';
+    ctx.lineWidth = 2;
+
     for (let i = 0; i < 5; i++) {
       ctx.beginPath();
       ctx.moveTo(x - size/2 + i * size/4, y + size/2);
@@ -213,8 +216,6 @@ export default function ZenGardenGame() {
         x + i * size/4,
         y + size/2
       );
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#4a9c5d';
       ctx.stroke();
     }
   };
@@ -249,43 +250,14 @@ export default function ZenGardenGame() {
     }
   };
 
-  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    if (tool === 'rake') {
-      setIsDrawing(true);
-      setLastPoint({ x, y });
-    } else {
-      setElements(prev => [...prev, { type: tool, x, y, size: elementSize }]);
-      redrawCanvas();
-    }
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    if (!isDrawing || !lastPoint) return;
-    
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    drawRakeLine(ctx, lastPoint.x, lastPoint.y, x, y);
-    setLastPoint({ x, y });
-  };
-
-  const handleMouseUp = () => {
-    setIsDrawing(false);
-    setLastPoint(null);
+  const drawElements = (ctx: CanvasRenderingContext2D) => {
+    elements.forEach(element => {
+      if (element.type === 'rock') {
+        drawRock(ctx, element.x, element.y, element.size);
+      } else {
+        drawPlant(ctx, element.x, element.y, element.size);
+      }
+    });
   };
 
   const redrawCanvas = () => {
@@ -310,45 +282,89 @@ export default function ZenGardenGame() {
     drawBackground(ctx);
   };
 
+  // Mouse/Touch Event Handlers
+  const handleStart = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    
+    const point = e instanceof MouseEvent || 'button' in e
+      ? getCanvasPoint(e.clientX, e.clientY)
+      : getCanvasPoint(e.touches[0].clientX, e.touches[0].clientY);
+
+    if (tool === 'rake') {
+      setIsDrawing(true);
+      setLastPoint(point);
+    } else {
+      setElements(prev => [...prev, { type: tool, ...point, size: elementSize }]);
+      redrawCanvas();
+    }
+  };
+
+  const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    
+    if (!isDrawing || !lastPoint) return;
+    
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const point = e instanceof MouseEvent || 'button' in e
+      ? getCanvasPoint(e.clientX, e.clientY)
+      : getCanvasPoint(e.touches[0].clientX, e.touches[0].clientY);
+
+    drawRakeLine(ctx, lastPoint.x, lastPoint.y, point.x, point.y);
+    setLastPoint(point);
+  };
+
+  const handleEnd = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    setIsDrawing(false);
+    setLastPoint(null);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center mb-8">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white py-4 md:py-8">
+      <div className="container mx-auto px-2 md:px-4">
+        <div className="flex justify-between items-center mb-4 md:mb-8">
           <Link 
             href="/game" 
             className="inline-flex items-center text-purple-700 hover:text-purple-800"
           >
             <ChevronLeft className="h-4 w-4 mr-1" />
-            Kembali ke Game
+            <span className="hidden sm:inline">Kembali ke Game</span>
+            <span className="sm:hidden">Kembali</span>
           </Link>
           <Button
             onClick={toggleMusic}
             variant="outline"
             className="flex items-center gap-2"
+            disabled={!!audioError || isLoading}
           >
             {isPlaying ? (
               <>
                 <Music2 className="h-4 w-4" />
-                Musik On
+                <span className="hidden sm:inline">Musik On</span>
               </>
             ) : (
               <>
                 <Music className="h-4 w-4" />
-                Musik Off
+                <span className="hidden sm:inline">Musik Off</span>
               </>
             )}
           </Button>
         </div>
 
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-3xl font-bold text-purple-900 text-center mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-purple-900 text-center mb-4 md:mb-8">
             Zen Sand Garden
           </h1>
 
-          <Card className="mb-8">
-            <div className="p-4 flex flex-wrap gap-4">
+          <Card className="mb-4 md:mb-8">
+            <div className="p-2 md:p-4 flex flex-wrap gap-2 md:gap-4">
               <Select value={tool} onValueChange={(value: 'rake' | 'rock' | 'plant') => setTool(value)}>
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="w-[140px] md:w-[180px]">
                   <SelectValue placeholder="Pilih Alat" />
                 </SelectTrigger>
                 <SelectContent>
@@ -360,7 +376,7 @@ export default function ZenGardenGame() {
 
               {tool === 'rake' && (
                 <Select value={rakePattern} onValueChange={(value: 'wave' | 'circle' | 'straight') => setRakePattern(value)}>
-                  <SelectTrigger className="w-[180px]">
+                  <SelectTrigger className="w-[140px] md:w-[180px]">
                     <SelectValue placeholder="Pilih Pola" />
                   </SelectTrigger>
                   <SelectContent>
@@ -371,47 +387,56 @@ export default function ZenGardenGame() {
                 </Select>
               )}
 
-              {(tool === 'rock' || tool === 'plant') && (
-                <div className="flex items-center gap-4 flex-1">
-                  <span className="text-sm text-gray-500">Ukuran:</span>
-                  <Slider
-                    value={[elementSize]}
-                    onValueChange={(value) => setElementSize(value[0])}
-                    min={10}
-                    max={40}
-                    step={1}
-                  />
-                </div>
-              )}
+{(tool === 'rock' || tool === 'plant') && (
+  <div className="flex items-center gap-2 md:gap-4 flex-1">
+    <span className="text-sm text-gray-500 whitespace-nowrap">Ukuran:</span>
+    <Slider
+      value={[elementSize]}
+      onValueChange={(value) => setElementSize(value[0])}
+      min={10}
+      max={40}
+      step={1}
+      className="w-full max-w-[200px]"
+    />
+  </div>
+)}
 
-              <Button variant="outline" onClick={clearCanvas}>
-                <RefreshCw className="h-4 w-4 mr-2" />
-                Bersihkan
-              </Button>
+<Button variant="outline" onClick={clearCanvas} className="w-full sm:w-auto">
+  <RefreshCw className="h-4 w-4 mr-2" />
+  <span className="hidden sm:inline">Bersihkan</span>
+  <span className="sm:hidden">Reset</span>
+</Button>
             </div>
           </Card>
 
-          <div className="aspect-video relative mb-8">
+          <div 
+            ref={containerRef} 
+            className="aspect-video relative mb-4 md:mb-8 bg-gray-50"
+            style={{ maxHeight: '70vh' }}
+          >
             <canvas
               ref={canvasRef}
-              className="w-full h-full border-2 border-gray-200 rounded-lg cursor-crosshair"
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
+              className="w-full h-full border-2 border-gray-200 rounded-lg cursor-crosshair touch-none"
+              onMouseDown={handleStart}
+              onMouseMove={handleMove}
+              onMouseUp={handleEnd}
+              onMouseLeave={handleEnd}
+              onTouchStart={handleStart}
+              onTouchMove={handleMove}
+              onTouchEnd={handleEnd}
             />
           </div>
 
-          <Card className="p-6 bg-purple-50">
-            <h3 className="text-lg font-semibold text-purple-900 mb-4">
+          <Card className="p-4 md:p-6 bg-purple-50">
+            <h3 className="text-lg font-semibold text-purple-900 mb-3 md:mb-4">
               Petunjuk
             </h3>
-            <ul className="text-gray-600 space-y-2">
-              <li>1. Pilih alat yang ingin digunakan: sisir pasir, batu, atau tanaman</li>
+            <ul className="text-sm md:text-base text-gray-600 space-y-1.5 md:space-y-2">
+              <li>1. Pilih alat: sisir pasir, batu, atau tanaman</li>
               <li>2. Untuk sisir pasir, pilih pola yang diinginkan</li>
-              <li>3. Untuk batu dan tanaman, atur ukuran yang diinginkan</li>
-              <li>4. Klik dan geser untuk membuat pola di pasir</li>
-              <li>5. Klik untuk menempatkan batu atau tanaman</li>
+              <li>3. Untuk batu dan tanaman, atur ukuran sesuai keinginan</li>
+              <li>4. Sentuh dan geser untuk membuat pola di pasir</li>
+              <li>5. Sentuh untuk menempatkan batu atau tanaman</li>
               <li>6. Nikmati proses meditasi melalui kreasi taman zen Anda</li>
             </ul>
           </Card>
