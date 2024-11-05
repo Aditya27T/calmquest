@@ -10,8 +10,10 @@ export const useFetchArticles = () => {
         const fetchArticles = async () => {
             try {
                 setLoading(true);
-                setError(null);                
-                const response = await fetch('/data/all-articles.json');
+                setError(null);
+                
+                // Now fetching from our API route instead of directly from public folder
+                const response = await fetch('/api/articles');
                 
                 if (!response.ok) {
                     throw new Error('Failed to fetch articles');

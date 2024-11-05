@@ -1,42 +1,23 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { Article } from '@/types/article';
+import { NextResponse } from 'next/server';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-export const useFetchArticles = () => {
-    const [articles, setArticles] = useState<Article[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchArticles = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                
-                // Fetch langsung dari file JSON di folder public
-                const response = await fetch('/data/all-articles.json');
-                
-                if (!response.ok) {
-                    throw new Error('Failed to fetch articles');
-                }
-
-                const data = await response.json();
-                setArticles(Array.isArray(data) ? data : []);
-                
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'An error occurred while fetching articles');
-                console.error('Error fetching articles:', err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchArticles();
-    }, []);
-
-    return {
-        articles,
-        loading,
-        error
-    };
-};
+export async function GET() {
+    try {
+        // Get the path to the JSON file
+        const jsonPath = path.join(process.cwd(), 'public', 'data', 'all-articles.json');
+        
+        // Read the JSON file
+        const fileContents = await fs.readFile(jsonPath, 'utf8');
+        const data = JSON.parse(fileContents);
+        
+        // Return the data with proper headers
+        return NextResponse.json(data);
+    } catch (error) {
+        console.error('Error reading articles:', error);
+        return NextResponse.json(
+            { error: 'Failed to fetch articles' },
+            { status: 500 }
+        );
+    }
+}
