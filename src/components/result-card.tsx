@@ -19,13 +19,13 @@ export function ResultCard({
 }: ResultCardProps) {
   if (!show || !children) return null;
 
-  const icons = {
+  const icons: Record<typeof type, JSX.Element> = {
     normal: <Brain className="h-6 w-6 text-purple-600" />,
     success: <ThumbsUp className="h-6 w-6 text-green-600" />,
     warning: <AlertTriangle className="h-6 w-6 text-yellow-600" />
   };
 
-  const backgrounds = {
+  const backgrounds: Record<typeof type, string> = {
     normal: 'bg-purple-50',
     success: 'bg-green-50',
     warning: 'bg-yellow-50'
@@ -37,14 +37,41 @@ export function ResultCard({
         {icons[type]}
         <div>
           <CardTitle className="text-xl">{title}</CardTitle>
-          {description && (
-            <CardDescription>{description}</CardDescription>
-          )}
+          {description && <CardDescription>{description}</CardDescription>}
         </div>
       </CardHeader>
-      <CardContent>
-        {children}
-      </CardContent>
+      <CardContent>{children}</CardContent>
     </Card>
+  );
+}
+
+// Usage Example:
+export default function App() {
+  return (
+    <div className="space-y-4">
+      <ResultCard
+        title="Stress Management Tips"
+        description="Practical tips to reduce stress"
+        type="success"
+      >
+        <ul className="list-disc pl-5">
+          <li>Practice deep breathing exercises</li>
+          <li>Go for a walk in nature</li>
+          <li>Connect with supportive friends</li>
+        </ul>
+      </ResultCard>
+
+      <ResultCard
+        title="Warning: High Stress Level"
+        description="Consider seeking professional help"
+        type="warning"
+      >
+        <p>Your stress level is elevated. Here are some immediate actions to consider:</p>
+        <ul className="list-disc pl-5">
+          <li>Talk to a mental health professional</li>
+          <li>Engage in relaxation activities</li>
+        </ul>
+      </ResultCard>
+    </div>
   );
 }

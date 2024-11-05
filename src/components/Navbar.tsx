@@ -41,6 +41,9 @@ const Navbar = () => {
               <Link href="/game" className="text-gray-600 hover:text-purple-700 transition-colors">
                 Game
               </Link>
+              <Link href="/articles" className="text-gray-600 hover:text-purple-700 transition-colors">
+                Artikel
+              </Link>
               <Link href="/about-us" className="text-gray-600 hover:text-purple-700 transition-colors">
                 Tentang Kami
               </Link>
@@ -48,7 +51,7 @@ const Navbar = () => {
                 onClick={handleEmergencyClick} 
                 className="bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full"
               >
-                Hubungi Kami
+                Kontak Penting
               </Button>
             </div>
 
@@ -85,6 +88,9 @@ const Navbar = () => {
                 >
                   Game
                 </Link>
+                <Link href="/articles" className="text-gray-600 hover:text-purple-700 transition-colors px-2 py-1">
+                  Artikel
+              </Link>
                 <Link 
                   href="/about-us"
                   className="text-gray-600 hover:text-purple-700 transition-colors px-2 py-1"
@@ -99,7 +105,7 @@ const Navbar = () => {
                   }} 
                   className="w-full bg-purple-700 hover:bg-purple-800 text-white px-6 py-2 rounded-full"
                 >
-                  Hubungi Kami
+                  Kontak Penting
                 </Button>
               </div>
             </div>

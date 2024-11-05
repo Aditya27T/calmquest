@@ -25,7 +25,7 @@ export function FaceDetection() {
   const [isModelLoading, setIsModelLoading] = useState(true);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [detectionCount, setDetectionCount] = useState(0);
-  
+
   useEffect(() => {
     loadModels();
   }, []);
@@ -34,7 +34,7 @@ export function FaceDetection() {
     try {
       const MODEL_URL = 'https://justadudewhohacks.github.io/face-api.js/models';
       await Promise.all([
-        faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+        faceapi.nets.mtcnn.loadFromUri(MODEL_URL),
         faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
         faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
         faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL)
@@ -45,21 +45,22 @@ export function FaceDetection() {
       alert('Gagal memuat model deteksi wajah. Silakan muat ulang halaman.');
     }
   };
-
+  
   const captureEmotion = async (): Promise<EmotionData | null> => {
     if (!webcamRef.current?.video || !canvasRef.current) return null;
-
+  
     const video = webcamRef.current.video;
     const canvas = canvasRef.current;
-
+  
     try {
+      // Menggunakan mtcnn untuk deteksi wajah
       const detection = await faceapi
-        .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions())
+        .detectSingleFace(video, new faceapi.MtcnnOptions({ minFaceSize: 100 }))
         .withFaceLandmarks()
         .withFaceExpressions();
-
+  
       if (detection) {
-        // Draw detection results
+        // Gambar deteksi hasil pada canvas
         canvas.width = video.videoWidth;
         canvas.height = video.videoHeight;
         const ctx = canvas.getContext('2d');
@@ -70,7 +71,7 @@ export function FaceDetection() {
           faceapi.draw.drawFaceLandmarks(canvas, resizedDetection);
           faceapi.draw.drawFaceExpressions(canvas, resizedDetection);
         }
-
+  
         return {
           neutral: detection.expressions.neutral || 0,
           happy: detection.expressions.happy || 0,
@@ -86,36 +87,37 @@ export function FaceDetection() {
     }
     return null;
   };
+  
 
   const startDetection = async () => {
     if (!webcamRef.current?.video) {
       alert('Kamera tidak tersedia. Pastikan Anda mengizinkan akses kamera.');
       return;
     }
-
+  
     setIsAnalyzing(true);
     setDetectionCount(0);
-
+  
     const emotionResults: EmotionData[] = [];
     
-    // Capture 3 samples with 1-second interval
-    for (let i = 0; i < 3; i++) {
+    // Capture 20 samples with a 1-second interval
+    for (let i = 0; i < 10; i++) {
       setDetectionCount(i + 1);
       const emotion = await captureEmotion();
       if (emotion) {
         emotionResults.push(emotion);
       }
-      if (i < 2) { // Don't wait after the last capture
+      if (i < 9) { // Don't wait after the last capture
         await new Promise(resolve => setTimeout(resolve, 1000));
       }
     }
-
+  
     if (emotionResults.length === 0) {
       setIsAnalyzing(false);
       alert('Tidak dapat mendeteksi emosi. Pastikan pencahayaan cukup dan wajah terlihat jelas.');
       return;
     }
-
+  
     // Calculate average emotions
     const averageEmotions = emotionResults.reduce((acc, curr) => ({
       neutral: acc.neutral + curr.neutral / emotionResults.length,
@@ -129,7 +131,7 @@ export function FaceDetection() {
       neutral: 0, happy: 0, sad: 0, angry: 0, 
       fearful: 0, disgusted: 0, surprised: 0
     });
-
+  
     try {
       const previousAssessment = localStorage.getItem('assessmentResult');
       if (!previousAssessment) {
@@ -137,13 +139,13 @@ export function FaceDetection() {
         router.push('/assessment');
         return;
       }
-
+  
       const assessmentData = JSON.parse(previousAssessment);
       
       // Find dominant emotion
       const dominantEmotion = Object.entries(averageEmotions)
         .reduce((a, b) => b[1] > a[1] ? b : a)[0];
-
+  
       // Save combined results
       const result = {
         ...assessmentData,
@@ -153,17 +155,17 @@ export function FaceDetection() {
           samples: emotionResults
         }
       };
-
+  
       localStorage.setItem('assessmentResult', JSON.stringify(result));
       
       // Proceed to result/analysis page
       router.push('/result');
-
+  
     } catch (error) {
       console.error('Error saving results:', error);
       alert('Terjadi kesalahan saat menyimpan hasil. Silakan coba lagi.');
     }
-
+  
     setIsAnalyzing(false);
   };
 
