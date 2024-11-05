@@ -4,7 +4,9 @@ const nextConfig = {
       domains: [
             'statik.tempo.co',
             'images.tempo.co',
-            'res.cloudinary.com',     
+            'res.cloudinary.com',  
+            'pbs.twimg.com',   
+            'i.ibb.co.com'
         ],
         minimumCacheTTL: 60,
         remotePatterns: [
@@ -19,7 +21,13 @@ const nextConfig = {
                 pathname: '/**',
             },
         ],
-  }
+  },
+    webpack: (config, { isServer }) => {
+        if (!isServer) {
+            config.resolve.fallback = { fs: false, path: false };
+        }
+        return config;
+    }
 };
 
 module.exports = nextConfig;

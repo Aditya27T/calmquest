@@ -406,16 +406,82 @@
       "stressLevel": "medium",
       "timestamp": "2024-11-04T17:36:34.729Z",
       "sessionId": "1730741779345"
+    },
+    {
+      "userMessage": "kontol",
+      "botResponse": "Mohon gunakan bahasa yang lebih sopan. Saya di sini untuk membantu Anda dengan cara yang positif dan mendukung.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-05T07:49:42.608Z",
+      "sessionId": "1730792933550"
+    },
+    {
+      "userMessage": "peli",
+      "botResponse": "Hai, aku di sini untuk membantu. Sepertinya kamu merasa agak stres. Jangan khawatir, kamu tidak sendirian. Mari kita cari tahu cara mengatasinya bersama.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-05T08:03:25.242Z",
+      "sessionId": "1730793692123",
+      "messageType": "normal"
+    },
+    {
+      "userMessage": "0+0",
+      "botResponse": "Senang mendengar kabar bahwa stresmu sedang rendah hari ini. Tetap jaga keadaan baikmu dengan melakukan hal-hal yang membuatmu merasa senang dan rileks.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-05T08:03:49.369Z",
+      "sessionId": "1730793692123",
+      "messageType": "normal"
+    },
+    {
+      "userMessage": "aku sedih nih",
+      "botResponse": "Aku memahami perasaan sedihmu. Ketahuilah bahwa kamu tidak sendirian dan boleh saja merasa seperti ini. Cobalah lakukan hal-hal yang kamu sukai untuk mengalihkan pikiran.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-05T08:04:32.709Z",
+      "sessionId": "1730793692123",
+      "messageType": "normal"
+    },
+    {
+      "userMessage": "kontol",
+      "botResponse": "Mohon gunakan bahasa yang lebih sopan. Saya di sini untuk membantu Anda dengan cara yang positif dan mendukung.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-05T08:02:41.918Z",
+      "sessionId": "1730793692123"
+    },
+    {
+      "userMessage": "bangsat",
+      "botResponse": "Mohon gunakan bahasa yang lebih sopan. Saya di sini untuk membantu Anda dengan cara yang positif dan mendukung.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-05T08:02:58.469Z",
+      "sessionId": "1730793692123"
+    },
+    {
+      "userMessage": "peli",
+      "botResponse": "Hai, aku di sini untuk membantu. Sepertinya kamu merasa agak stres. Jangan khawatir, kamu tidak sendirian. Mari kita cari tahu cara mengatasinya bersama.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-05T08:03:25.242Z",
+      "sessionId": "1730793692123"
+    },
+    {
+      "userMessage": "0+0",
+      "botResponse": "Senang mendengar kabar bahwa stresmu sedang rendah hari ini. Tetap jaga keadaan baikmu dengan melakukan hal-hal yang membuatmu merasa senang dan rileks.",
+      "stressLevel": "low",
+      "timestamp": "2024-11-05T08:03:49.369Z",
+      "sessionId": "1730793692123"
+    },
+    {
+      "userMessage": "aku sedih nih",
+      "botResponse": "Aku memahami perasaan sedihmu. Ketahuilah bahwa kamu tidak sendirian dan boleh saja merasa seperti ini. Cobalah lakukan hal-hal yang kamu sukai untuk mengalihkan pikiran.",
+      "stressLevel": "medium",
+      "timestamp": "2024-11-05T08:04:32.709Z",
+      "sessionId": "1730793692123"
     }
   ],
   "metadata": {
-    "lastUpdated": "2024-11-04T17:53:31.202Z",
-    "totalConversations": 58,
+    "lastUpdated": "2024-11-05T10:42:51.511Z",
+    "totalConversations": 67,
     "performanceMetrics": {
       "averageEffectiveness": 5,
       "stressLevelDistribution": {
-        "low": 20,
-        "medium": 23,
+        "low": 24,
+        "medium": 28,
         "high": 15
       }
     }

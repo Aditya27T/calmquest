@@ -72,4 +72,107 @@ body {
 }
 
 @import 'leaflet/dist/leaflet.css';
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
 
+.animate-scroll {
+  animation: scroll 1.5s infinite;
+}
+
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-blob {
+  animation: blob 10s infinite ease-in-out;
+}
+
+.animate-float {
+  animation: float 3s infinite ease-in-out;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+
+/* Contoh styling responsif menggunakan Tailwind CSS */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  .w-8, .h-8 {
+    width: 2rem;
+    height: 2rem;
+  }
+  .w-16 {
+    width: 1rem;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .mb-8 {
+    margin-bottom: 2rem;
+  }
+  .p-8 {
+    padding: 1.5rem;
+  }
+  /* Text adjustments */
+  .text-sm {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .space-x-4 {
+    gap: 1rem;
+  }
+  .max-w-3xl {
+    max-width: 100%;
+  }
+  /* Button Styling */
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Flex Column for Steps on Small Screens */
+@media (max-width: 640px) {
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .steps-container div {
+    margin-bottom: 1rem;
+  }
+}
