@@ -2,7 +2,8 @@ export interface Coordinates {
     lat: number;
     lng: number;
   }
-  
+
+
   export interface Hospital {
     name: string;
     address: string;
