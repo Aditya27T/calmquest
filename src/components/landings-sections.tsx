@@ -76,7 +76,7 @@ export const FeaturesSection = () => {
             <div className="absolute inset-0 bg-purple-100 rounded-3xl overflow-hidden">
               <div className="relative h-full w-full">
                 <Image
-                  src="/masAli.jpeg"
+                  src="https://cdn.prod.website-files.com/5e9bc09705bf3a7e0e160744/5ea99b00414d1448a97d28aa_illust-whatismh-0-header.svg"
                   alt="Features Illustration"
                   fill
                   className="object-cover"
@@ -114,7 +114,7 @@ export const GamesSection = () => {
             <div className="bg-gradient-to-br from-purple-800 to-purple-700 p-8 rounded-3xl shadow-xl">
               <div className="aspect-video relative rounded-xl overflow-hidden mb-6">
                 <Image
-                  src="https://pbs.twimg.com/media/GYUnJB8bkAADhnH.jpg"
+                  src="/gamemeditasi.jpg"
                   alt="Featured Game"
                   fill
                   className="object-cover"
