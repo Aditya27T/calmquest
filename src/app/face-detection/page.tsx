@@ -19,7 +19,7 @@ export default function FaceDetectionPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white py-8">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-8">
         {/* Back Button */}
         <Link 
           href="/assessment" 
@@ -31,21 +31,21 @@ export default function FaceDetectionPage() {
 
         {/* Progress Steps */}
         <div className="mb-8">
-          <div className="flex justify-center items-center space-x-4">
+          <div className="flex flex-col md:flex-row justify-center items-center space-x-0 md:space-x-4 space-y-4 md:space-y-0">
             <div className="flex items-center">
               <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center">
                 ✓
               </div>
               <div className="ml-2 text-green-700 font-medium">Assessment</div>
             </div>
-            <div className="w-16 h-0.5 bg-purple-700" />
+            <div className="w-16 h-0.5 bg-purple-700 hidden md:block" />
             <div className="flex items-center">
               <div className="w-8 h-8 bg-purple-700 text-white rounded-full flex items-center justify-center">
                 2
               </div>
               <div className="ml-2 text-purple-900 font-medium">Deteksi Emosi</div>
             </div>
-            <div className="w-16 h-0.5 bg-purple-200" />
+            <div className="w-16 h-0.5 bg-purple-200 hidden md:block" />
             <div className="flex items-center">
               <div className="w-8 h-8 bg-purple-200 text-purple-700 rounded-full flex items-center justify-center">
                 3
@@ -69,7 +69,7 @@ export default function FaceDetectionPage() {
 
           <FaceDetection />
 
-          <p className="text-center text-gray-500 mt-8 text-sm">
+          <p className="text-center text-gray-500 mt-8 text-sm px-4">
             Data wajah Anda tidak akan disimpan dan hanya digunakan untuk analisis emosi saat ini.
           </p>
         </div>

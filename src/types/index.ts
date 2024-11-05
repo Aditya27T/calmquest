@@ -25,8 +25,6 @@ export interface Coordinates {
     hospitals: Hospital[];
   }
 
-  // src/types/index.ts
-
 // Type untuk pesan dalam chat interface
 export type Message = {
   id: string;
@@ -36,6 +34,7 @@ export type Message = {
   stressLevel?: 'low' | 'medium' | 'high';
   needsFeedback?: boolean;
   feedback?: boolean;
+  isWarning?: boolean;
 };
 
 export type TrainingMessage = {
@@ -44,6 +43,8 @@ export type TrainingMessage = {
   stressLevel: 'low' | 'medium' | 'high';
   effectiveness?: number;
   timestamp: Date;
+  sessionId: string;
+  messageType?: 'normal' | 'bad-words' | 'irrelevant' | 'unclear';
 };
 
 export type TrainingData = {

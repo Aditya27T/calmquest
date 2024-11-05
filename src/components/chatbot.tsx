@@ -7,9 +7,15 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card } from "@/components/ui/card";
 import { analyzeStressLevel, generateResponse } from '@/lib/chat-utils';
 import type { Message } from '@/types';
+import { analyzeMessage } from '@/lib/content-filter';
+
+// Fungsi helper untuk generate ID unik
+function generateMessageId(prefix: string): string {
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+}
 
 const WELCOME_MESSAGE: Message = {
-  id: 'welcome',
+  id: generateMessageId('welcome'),
   content: "Halo! Saya asisten CalmQuest. Bagaimana perasaan Anda hari ini?",
   sender: 'bot',
   timestamp: new Date(),
@@ -32,22 +38,18 @@ const ChatBot = () => {
 
   // Reset chat tapi tetap simpan training data
   const resetChat = () => {
-    // Simpan chat saat ini ke training data sebelum reset
     const chatToSave = messages.filter(msg => msg.id !== 'welcome');
     if (chatToSave.length > 0) {
       saveChatToTraining(chatToSave);
     }
 
-    // Reset state
     setMessages([WELCOME_MESSAGE]);
     setInputMessage('');
     setSessionId(Date.now().toString());
   };
 
-  // Simpan seluruh chat ke training data
   const saveChatToTraining = async (chatMessages: Message[]) => {
     try {
-      // Ambil pasangan pesan user dan bot
       for (let i = 0; i < chatMessages.length - 1; i++) {
         const userMessage = chatMessages[i];
         const botMessage = chatMessages[i + 1];
@@ -81,8 +83,10 @@ const ChatBot = () => {
   const handleSend = async () => {
     if (!inputMessage.trim()) return;
   
+    const analysis = analyzeMessage(inputMessage);
+    
     const userMessage: Message = {
-      id: Date.now().toString(),
+      id: generateMessageId('user'),
       content: inputMessage,
       sender: 'user',
       timestamp: new Date()
@@ -93,12 +97,25 @@ const ChatBot = () => {
     setIsLoading(true);
   
     try {
+      if (!analysis.isValid && analysis.response) {
+        const warningMessage: Message = {
+          id: generateMessageId('warning'),
+          content: analysis.response,
+          sender: 'bot',
+          timestamp: new Date(),
+          needsFeedback: false,
+          isWarning: true
+        };
+  
+        setMessages(prev => [...prev, warningMessage]);
+        return;
+      }
+  
       const stressLevel = await analyzeStressLevel(inputMessage);
-      
       const botResponse = await generateResponse(inputMessage, stressLevel);
   
       const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
+        id: generateMessageId('bot'),
         content: botResponse,
         sender: 'bot',
         timestamp: new Date(),
@@ -106,7 +123,8 @@ const ChatBot = () => {
         needsFeedback: true
       };
   
-      setMessages(prev => [...prev, botMessage]);  
+      setMessages(prev => [...prev, botMessage]);
+      
       try {
         await fetch('/api/training/save', {
           method: 'POST',
@@ -114,11 +132,12 @@ const ChatBot = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            userMessage: inputMessage,
+            userMessage: userMessage.content,
             botResponse,
             stressLevel,
             timestamp: new Date(),
-            sessionId
+            sessionId,
+            messageType: analysis.warningType || 'normal'
           })
         });
       } catch (error) {
@@ -128,7 +147,7 @@ const ChatBot = () => {
     } catch (error) {
       console.error('Error in chat:', error);
       setMessages(prev => [...prev, {
-        id: Date.now().toString(),
+        id: generateMessageId('error'),
         content: "Maaf, terjadi kesalahan. Silakan coba lagi.",
         sender: 'bot',
         timestamp: new Date()
@@ -137,7 +156,7 @@ const ChatBot = () => {
       setIsLoading(false);
     }
   };
-
+  
   const handleFeedback = async (messageId: string, isPositive: boolean) => {
     setMessages(prev => prev.map(msg => 
       msg.id === messageId 
@@ -169,7 +188,6 @@ const ChatBot = () => {
 
   const toggleChat = () => {
     if (isOpen) {
-      // Saat menutup chat, simpan dan reset
       resetChat();
     }
     setIsOpen(!isOpen);
@@ -230,13 +248,15 @@ const ChatBot = () => {
                         className={`max-w-[80%] p-3 rounded-lg ${
                           message.sender === 'user'
                             ? 'bg-purple-700 text-white'
+                            : message.isWarning
+                            ? 'bg-orange-100 text-orange-800 border border-orange-200'
                             : 'bg-gray-100 text-gray-800'
                         }`}
                       >
                         {message.content}
                       </div>
                       
-                      {message.sender === 'bot' && message.needsFeedback && (
+                      {message.sender === 'bot' && message.needsFeedback && !message.isWarning && (
                         <div className="flex gap-2 mt-1">
                           <Button
                             variant="ghost"
@@ -258,39 +278,29 @@ const ChatBot = () => {
                       )}
                     </div>
                   ))}
-                  {isLoading && (
-                    <div className="flex justify-start">
-                      <div className="bg-gray-100 p-3 rounded-lg">
-                        <span className="animate-pulse">...</span>
-                      </div>
-                    </div>
-                  )}
                   <div ref={messagesEndRef} />
                 </div>
               </ScrollArea>
 
-              <div className="p-3 border-t">
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handleSend();
-                  }}
-                  className="flex gap-2"
-                >
+              {/* Input Field */}
+              <div className="p-3 border-t border-gray-200">
+                <div className="flex items-center gap-2">
                   <Input
+                    placeholder="Ketik pesan Anda..."
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
-                    placeholder="Ketik pesan Anda..."
+                    onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                     className="flex-1"
+                    disabled={isLoading}
                   />
                   <Button
-                    type="submit"
-                    size="icon"
+                    onClick={handleSend}
+                    className="text-purple-700"
                     disabled={isLoading || !inputMessage.trim()}
                   >
                     <Send className="h-4 w-4" />
                   </Button>
-                </form>
+                </div>
               </div>
             </>
           )}

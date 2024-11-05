@@ -1,0 +1,32 @@
+@media (max-width: 768px) {
+    .container {
+      padding: 1rem;
+    }
+    .w-8, .h-8 {
+      width: 2rem;
+      height: 2rem;
+    }
+    .w-16 {
+      width: 1rem;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .text-3xl {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .space-x-4 {
+      gap: 1rem;
+    }
+    .max-w-3xl {
+      max-width: 100%;
+    }
+    .inline-flex {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  

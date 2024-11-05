@@ -1,7 +1,9 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
-import cachedResponses from '../../public/cache/responses.json';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import cachedResponses from "../../public/cache/responses.json";
 
-const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI(
+  process.env.NEXT_PUBLIC_GEMINI_API_KEY || ""
+);
 
 interface AssessmentResult {
   pss: {
@@ -28,20 +30,21 @@ interface AssessmentResult {
   };
 }
 
+
 function generateCacheKey(results: AssessmentResult): string {
   // Helper function to categorize scores
   const categorizeStress = (score: number) => {
-    if (score <= 13) return 'low';
-    if (score <= 26) return 'moderate';
-    return 'high';
+    if (score <= 13) return "low";
+    if (score <= 26) return "moderate";
+    return "high";
   };
 
   const categorizeDepression = (score: number) => {
-    if (score <= 10) return 'low';
-    if (score <= 16) return 'mild';
-    if (score <= 20) return 'moderate';
-    if (score <= 30) return 'severe';
-    return 'extreme';
+    if (score <= 10) return "low";
+    if (score <= 16) return "mild";
+    if (score <= 20) return "moderate";
+    if (score <= 30) return "severe";
+    return "extreme";
   };
 
   const stressLevel = categorizeStress(results.pss.score);
@@ -56,12 +59,12 @@ export async function analyzeResults(results: AssessmentResult) {
     // Check if we have a cached response
     const cacheKey = generateCacheKey(results);
     if (cachedResponses.responses[cacheKey]) {
-      console.log('Using cached response for:', cacheKey);
+      console.log("Using cached response for:", cacheKey);
       return cachedResponses.responses[cacheKey];
     }
 
     // If no cache, use Gemini API
-    const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const prompt = `Analisis kondisi kesehatan mental seseorang berdasarkan data berikut sebagai seorang psikolog profesional. Berikan analisis yang mendalam namun tetap empatik dan mudah dipahami.
 
@@ -110,20 +113,27 @@ Panduan penting:
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    
-    const parts = text.split('\n\n');
-    
-    return {
-      summary: parts[0]?.trim() || '',
-      correlation: parts[1]?.trim() || '',
-      recommendations: parts[2]?.split('\n')
-        .filter(line => line.startsWith('-'))
-        .map(line => line.substring(1).trim()) || [],
-      professionalHelp: parts[3]?.trim() || ''
+
+    const parts = text.split("\n\n");
+    if (parts.length < 4) {
+      console.error("Error analyzing results with Gemini:", parts);
+      throw new Error("Gagal menganalisis hasil. Silakan coba lagi.");
+    }
+
+    cachedResponses.responses[cacheKey] = {
+      summary: parts[0]?.trim() || "",
+      correlation: parts[1]?.trim() || "",
+      recommendations:
+        parts[2]
+          ?.split("\n")
+          .filter((line) => line.startsWith("-"))
+          .map((line) => line.substring(1).trim().replace(/\*\*/g, "")) || [],
+      professionalHelp: parts[3]?.trim() || "",
     };
 
+    return cachedResponses.responses[cacheKey];
   } catch (error) {
-    console.error('Error analyzing results with Gemini:', error);
-    throw new Error('Gagal menganalisis hasil. Silakan coba lagi.');
+    console.error("Error analyzing results with Gemini:", error);
+    throw new Error("Gagal menganalisis hasil. Silakan coba lagi.");
   }
 }

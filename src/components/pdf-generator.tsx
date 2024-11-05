@@ -1,4 +1,3 @@
-// src/components/pdf-generator.tsx
 'use client';
 
 import { useState } from 'react';
@@ -20,23 +19,15 @@ export const PDFGenerator = ({ contentRef }: PDFGeneratorProps) => {
     const pageCount = pdf.getNumberOfPages();
     for (let i = 1; i <= pageCount; i++) {
       pdf.setPage(i);
-      // Set watermark style
       pdf.setTextColor(230, 230, 230);
       pdf.setFontSize(60);
       pdf.setGState(new pdf.GState({ opacity: 0.3 }));
-      
-      // Add watermark diagonally
       pdf.text(
         'CalmQuest',
-        pdf.internal.pageSize.width/2,
-        pdf.internal.pageSize.height/2,
-        {
-          angle: 45,
-          align: 'center'
-        }
+        pdf.internal.pageSize.width / 2,
+        pdf.internal.pageSize.height / 2,
+        { angle: 45, align: 'center' }
       );
-      
-      // Reset text state for other content
       pdf.setGState(new pdf.GState({ opacity: 1 }));
     }
   };
@@ -53,84 +44,66 @@ export const PDFGenerator = ({ contentRef }: PDFGeneratorProps) => {
 
     try {
       setIsGenerating(true);
-      
-      // Show generating toast
       toast({
         title: "Generating PDF",
         description: "Mohon tunggu sebentar...",
       });
 
+      // Apply fixed desktop size styling
+      const originalStyle = contentRef.current.style.cssText;
+      contentRef.current.style.width = '1024px'; // Fixed desktop width
+      contentRef.current.style.padding = '20px'; // Adjust padding if needed
+      contentRef.current.style.transform = 'scale(1)';
+      contentRef.current.style.transformOrigin = 'top left';
+
       const canvas = await html2canvas(contentRef.current, {
-        scale: 2,
+        scale: 2, // Higher scale for better resolution
         logging: false,
         useCORS: true,
         backgroundColor: '#ffffff',
-        onclone: (document) => {
-          // Modify cloned document if needed
-          const element = document.getElementById('content-to-pdf');
-          if (element) {
-            element.style.padding = '20px';
-          }
-        }
       });
 
-      const imgWidth = 210; // A4 width in mm
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
-      const pdf = new jsPDF('p', 'mm', 'a4');
+      // Restore original styles after capturing
+      contentRef.current.style.cssText = originalStyle;
+
       const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+
+      const imgWidth = 210;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       // Add header
       pdf.setFontSize(20);
-      pdf.setTextColor(102, 51, 153); // Purple color
+      pdf.setTextColor(102, 51, 153);
       pdf.text('CalmQuest - Hasil Assessment', 105, 15, { align: 'center' });
-      
+
       // Add date
       pdf.setFontSize(12);
-      pdf.setTextColor(96, 96, 96); // Gray color
+      pdf.setTextColor(96, 96, 96);
       const today = new Date().toLocaleDateString('id-ID', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
       });
       pdf.text(`Tanggal: ${today}`, 105, 25, { align: 'center' });
 
-      // Add watermark
       addWatermark(pdf);
 
-      // Add content
       pdf.addImage(imgData, 'PNG', 0, 35, imgWidth, imgHeight);
 
-      // Add footer
-      const pageCount = pdf.getNumberOfPages();
-      for (let i = 1; i <= pageCount; i++) {
-        pdf.setPage(i);
-        pdf.setFontSize(10);
-        pdf.setTextColor(128, 128, 128);
-        
-        // Add page number
-        pdf.text(
-          `Halaman ${i} dari ${pageCount}`,
-          105,
-          pdf.internal.pageSize.height - 20,
-          { align: 'center' }
-        );
-        
-        // Add disclaimer
-        pdf.text(
-          'Hasil ini bersifat indikatif dan tidak menggantikan diagnosis profesional',
-          105,
-          pdf.internal.pageSize.height - 10,
-          { align: 'center' }
-        );
-      }
+      pdf.setFontSize(10);
+      pdf.setTextColor(128, 128, 128);
+      pdf.text(
+        'Hasil ini bersifat indikatif dan tidak menggantikan diagnosis profesional',
+        105,
+        pdf.internal.pageSize.height - 10,
+        { align: 'center' }
+      );
 
-      // Save PDF
       const fileName = `CalmQuest-Hasil-${new Date().toISOString().split('T')[0]}.pdf`;
       pdf.save(fileName);
 
-      // Show success toast
       toast({
         title: "PDF berhasil dibuat",
         description: "File telah diunduh ke perangkat Anda",
