@@ -21,14 +21,21 @@ export const PDFGenerator = ({ contentRef }: PDFGeneratorProps) => {
       pdf.setPage(i);
       pdf.setTextColor(230, 230, 230);
       pdf.setFontSize(60);
-      pdf.setGState(new pdf.GState({ opacity: 0.3 }));
+      
+      // Use type assertion to handle the GState
+      const gState = new (pdf as any).GState({ opacity: 0.3 });
+      (pdf as any).setGState(gState);
+      
       pdf.text(
         'CalmQuest',
         pdf.internal.pageSize.width / 2,
         pdf.internal.pageSize.height / 2,
         { angle: 45, align: 'center' }
       );
-      pdf.setGState(new pdf.GState({ opacity: 1 }));
+      
+      // Reset opacity
+      const fullOpacity = new (pdf as any).GState({ opacity: 1 });
+      (pdf as any).setGState(fullOpacity);
     }
   };
 
@@ -51,13 +58,13 @@ export const PDFGenerator = ({ contentRef }: PDFGeneratorProps) => {
 
       // Apply fixed desktop size styling
       const originalStyle = contentRef.current.style.cssText;
-      contentRef.current.style.width = '1024px'; // Fixed desktop width
-      contentRef.current.style.padding = '20px'; // Adjust padding if needed
+      contentRef.current.style.width = '1024px';
+      contentRef.current.style.padding = '20px';
       contentRef.current.style.transform = 'scale(1)';
       contentRef.current.style.transformOrigin = 'top left';
 
       const canvas = await html2canvas(contentRef.current, {
-        scale: 2, // Higher scale for better resolution
+        scale: 2,
         logging: false,
         useCORS: true,
         backgroundColor: '#ffffff',

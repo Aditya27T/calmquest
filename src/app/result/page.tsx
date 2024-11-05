@@ -56,7 +56,7 @@ export default function ResultPage() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [assessmentData, setAssessmentData] = useState<AssessmentResult | null>(null);
   const { articles } = useFetchArticles();
-  const [recommendedArticles, setRecommendedArticles] = useState([]);
+  const [recommendedArticles, setRecommendedArticles] = useState<any[]>([]);
 
   useEffect(() => {
     const processResults = async () => {

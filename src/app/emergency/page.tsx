@@ -11,7 +11,7 @@ export default function EmergencyPage() {
   const [activeTab, setActiveTab] = useState('details');
   const [selectedHospital, setSelectedHospital] = useState(emergencyData.hospitals[0]);
 
-  const handleHospitalSelect = (hospital) => {
+  const handleHospitalSelect = (hospital: any) => {
     setSelectedHospital(hospital);
     setActiveTab('details');
   };

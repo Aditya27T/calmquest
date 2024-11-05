@@ -210,7 +210,7 @@ export default function LandingPage() {
   );
 }
 
-const Step = ({ number, title, description }) => (
+const Step = ({ number, title, description }: any) => (
   <div className="flex flex-col items-center text-center max-w-xs">
     <div className="w-12 h-12 rounded-full bg-purple-700 text-white flex items-center justify-center text-xl font-bold mb-4">
       {number}

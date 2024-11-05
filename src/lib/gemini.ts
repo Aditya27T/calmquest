@@ -30,9 +30,25 @@ interface AssessmentResult {
   };
 }
 
+// Define a type for the structure of each response in the cache
+interface CachedResponse {
+  summary: string;
+  correlation: string;
+  recommendations: string[];
+  professionalHelp: string;
+}
+
+// Define a type for the cached responses
+interface CachedResponses {
+  responses: {
+    [key: string]: CachedResponse;
+  };
+}
+
+// Cast cachedResponses to the CachedResponses type
+const typedCachedResponses = cachedResponses as CachedResponses;
 
 function generateCacheKey(results: AssessmentResult): string {
-  // Helper function to categorize scores
   const categorizeStress = (score: number) => {
     if (score <= 13) return "low";
     if (score <= 26) return "moderate";
@@ -58,9 +74,9 @@ export async function analyzeResults(results: AssessmentResult) {
   try {
     // Check if we have a cached response
     const cacheKey = generateCacheKey(results);
-    if (cachedResponses.responses[cacheKey]) {
+    if (typedCachedResponses.responses[cacheKey]) {
       console.log("Using cached response for:", cacheKey);
-      return cachedResponses.responses[cacheKey];
+      return typedCachedResponses.responses[cacheKey];
     }
 
     // If no cache, use Gemini API
@@ -120,7 +136,8 @@ Panduan penting:
       throw new Error("Gagal menganalisis hasil. Silakan coba lagi.");
     }
 
-    cachedResponses.responses[cacheKey] = {
+    // Add the new response to the cache
+    typedCachedResponses.responses[cacheKey] = {
       summary: parts[0]?.trim() || "",
       correlation: parts[1]?.trim() || "",
       recommendations:
@@ -131,7 +148,7 @@ Panduan penting:
       professionalHelp: parts[3]?.trim() || "",
     };
 
-    return cachedResponses.responses[cacheKey];
+    return typedCachedResponses.responses[cacheKey];
   } catch (error) {
     console.error("Error analyzing results with Gemini:", error);
     throw new Error("Gagal menganalisis hasil. Silakan coba lagi.");

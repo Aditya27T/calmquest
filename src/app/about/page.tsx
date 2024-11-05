@@ -204,7 +204,7 @@ export default function LearnMorePage() {
   );
 }
 
-const IssueCard = ({ icon, title, description }) => (
+const IssueCard = ({ icon, title, description }: any) => (
   <div className="bg-white p-6 rounded-xl shadow-sm">
     <div className="mb-4">{icon}</div>
     <h3 className="text-xl font-semibold text-purple-900 mb-2">{title}</h3>
@@ -212,12 +212,12 @@ const IssueCard = ({ icon, title, description }) => (
   </div>
 );
 
-const TipCard = ({ icon, title, tips }) => (
+const TipCard = ({ icon, title, tips }: any) => (
   <div className="bg-purple-50 p-6 rounded-xl">
     <div className="mb-4">{icon}</div>
     <h3 className="text-lg font-semibold text-purple-900 mb-3">{title}</h3>
     <ul className="space-y-2">
-      {tips.map((tip, index) => (
+      {tips.map(({ tip }: any, index: any) => (
         <li key={index} className="text-gray-600 text-sm flex items-start">
           <span className="text-purple-700 mr-2">•</span>
           {tip}
@@ -227,7 +227,7 @@ const TipCard = ({ icon, title, tips }) => (
   </div>
 );
 
-const WarningSign = ({ text }) => (
+const WarningSign = ({ text }: any) => (
   <li className="flex items-center">
     <AlertTriangle className="h-5 w-5 text-purple-700 mr-3 flex-shrink-0" />
     <span className="text-gray-600">{text}</span>

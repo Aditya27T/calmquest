@@ -165,7 +165,7 @@ export const GamesSection = () => {
   );
 };
 
-const GameCard = ({ title, description, icon, color }) => (
+const GameCard = ({ title, description, icon, color }: any) => (
   <div className={`bg-gradient-to-r ${color} p-6 rounded-xl hover:shadow-lg transition-all cursor-pointer transform hover:-translate-y-1`}>
     <div className="flex items-center">
       <span className="text-3xl mr-4">{icon}</span>
