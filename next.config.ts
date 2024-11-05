@@ -22,9 +22,9 @@ const nextConfig = {
             },
         ],
   },
-    webpack: (config, { isServer }) => {
+    webpack: (config: any, { isServer }: { isServer: any }) => {
         if (!isServer) {
-            config.resolve.fallback = { fs: false, path: false };
+            config.resolve.fallback.fs = false;
         }
         return config;
     }
