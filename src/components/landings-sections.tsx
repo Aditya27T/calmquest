@@ -76,7 +76,7 @@ export const FeaturesSection = () => {
             <div className="absolute inset-0 bg-purple-100 rounded-3xl overflow-hidden">
               <div className="relative h-full w-full">
                 <Image
-                  src="masAli.jpg"
+                  src="https://i.ibb.co.com/KXD8QSG/Whats-App-Image-2024-11-05-at-08-50-59.jpg"
                   alt="Features Illustration"
                   fill
                   className="object-cover"
