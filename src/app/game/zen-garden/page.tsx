@@ -45,7 +45,7 @@ export default function ZenGardenGame() {
   // Initialize audio
   useEffect(() => {
     let mounted = true;
-    const audio = new Audio('/audio/zen-background.mp3');
+    const audio = new Audio('/audio/Mahjong.mp3');
     
     const handleError = (e: Event) => {
       if (!mounted) return;
