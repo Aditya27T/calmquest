@@ -4,6 +4,8 @@ import React from "react";
 export function AboutUsCard() {
   return (
     <div className="bg-white shadow-lg rounded-xl p-8">
+
+      
         <div className="flex items-center space-x-4">
             <div className="w-16 h-16 bg-purple-200 rounded-full flex items-center justify-center">
             <span className="text-purple-700">Image</span>
