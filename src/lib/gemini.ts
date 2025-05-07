@@ -80,7 +80,7 @@ export async function analyzeResults(results: AssessmentResult) {
     }
 
     // If no cache, use Gemini API
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
     const prompt = `Analisis kondisi kesehatan mental seseorang berdasarkan data berikut sebagai seorang psikolog profesional. Berikan analisis yang mendalam namun tetap empatik dan mudah dipahami.
 
