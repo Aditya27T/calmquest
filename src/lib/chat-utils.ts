@@ -40,7 +40,7 @@ export async function generateResponse(
   stressLevel: 'low' | 'medium' | 'high'
 ): Promise<string> {
   try {
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     
     const prompt = `
     Kamu adalah asisten kesehatan mental yang empatik dan suportif. 
