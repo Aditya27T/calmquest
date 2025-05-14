@@ -6,9 +6,9 @@ import Image  from 'next/image';
 
 const teamMembers = [
   {
-    name: "Dea Alensa",
+    name: "Arfan Mirza",
     role: "Project Manager",
-    image: "https://i.ibb.co.com/9H5WLNc/Whats-App-Image-2024-11-05-at-15-41-06.jpg"
+    image: "https://i.ibb.co.com/KXD8QSG/Whats-App-Image-2024-11-05-at-08-50-59.jpg"
   },
   {
     name: "Aditya Eka Rahmadani",
@@ -17,18 +17,18 @@ const teamMembers = [
     objectFit: "auto",
   },
   {
-    name: "Amelia Novelinda",
+    name: "Haris Hamman",
     role: "Desain Grafis",
-    image: "https://i.ibb.co.com/ky7B2CM/Whats-App-Image-2024-11-05-at-15-20-11.jpg"
+    image: "https://i.ibb.co.com/KXD8QSG/Whats-App-Image-2024-11-05-at-08-50-59.jpg"
   },
   {
-    name: "Fajar Pramudya Ananta Purba",
+    name: "Daffa Ramadhan",
     role: "UI/UX Designer",
-    image: "https://i.ibb.co.com/6Wpt4Pd/image.png",
+    image: "https://i.ibb.co.com/KXD8QSG/Whats-App-Image-2024-11-05-at-08-50-59.jpg",
     objectFit: "cover",
   },
   {
-    name: "Januarta Madi Pratama Putra",
+    name: "Angga Rizwae",
     role: "Quality Assurance And Documentation",
     image: "https://i.ibb.co.com/DrRzLDB/Whats-App-Image-2024-11-05-at-15-15-13.jpg"
   }
