@@ -28,9 +28,9 @@ const teamMembers = [
     objectFit: "cover",
   },
   {
-    name: "Angga Rizwae",
+    name: "Angga Rizwar",
     role: "Quality Assurance And Documentation",
-    image: "https://i.ibb.co.com/DrRzLDB/Whats-App-Image-2024-11-05-at-15-15-13.jpg"
+    image: "https://i.ibb.co.com/KXD8QSG/Whats-App-Image-2024-11-05-at-08-50-59.jpg",
   }
   
 ];
